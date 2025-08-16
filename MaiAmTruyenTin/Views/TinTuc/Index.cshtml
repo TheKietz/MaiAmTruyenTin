@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Tin tức";
+}
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        /* Section Tin tức nổi bật */
+        .hero {
+            background: #ccc;
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Sự kiện mới */
+        .events {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .event-box {
+            flex: 1;
+            background: #999;
+            height: 150px;
+            border-radius: 8px;
+        }
+
+        /* Bài viết chia sẻ */
+        .articles {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .article-box {
+            background: #bbb;
+            height: 120px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tin tức nổi bật -->
+    <section class="hero">
+        Tin tức nổi bật / Thông báo
+    </section>
+
+    <!-- Sự kiện -->
+    <section class="events">
+        <div class="event-box">Sự kiện 1</div>
+        <div class="event-box">Sự kiện 2</div>
+    </section>
+
+    <!-- Bài viết -->
+    <section class="articles">
+        <div class="article-box">Bài viết 1</div>
+        <div class="article-box">Bài viết 2</div>
+        <div class="article-box">Bài viết 3</div>
+        <div class="article-box">Bài viết 4</div>
+        <div class="article-box">Bài viết 5</div>
+        <div class="article-box">Bài viết 6</div>
+        <div class="article-box">Bài viết 7</div>
+        <div class="article-box">Bài viết 8</div>
+        <div class="article-box">Bài viết 9</div>
+    </section>
+
+</body>
+</html>

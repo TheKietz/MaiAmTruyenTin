@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Nhà tài trợ";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà Tài Trợ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        header, footer {
+            background-color: #d3d3d3;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .section-box {
+            background-color: #b0b0b0;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .logo-box, .donate-box {
+            background-color: #8088a0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .article-box {
+            background-color: #8088a0;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tiêu đề -->
+    <section class="section-box">
+        <h2>Tiêu đề</h2>
+        <p>Thông tin giới thiệu ngắn gọn về nhà tài trợ</p>
+    </section>
+
+    <!-- Logo nhà tài trợ -->
+    <section class="section-box">
+        <h4>Logo Nhà Tài Trợ</h4>
+        <div class="logo-box">[Logo nhà tài trợ]</div>
+    </section>
+
+    <!-- Danh sách donate -->
+    <section class="section-box">
+        <h4>Danh sách donate</h4>
+        <div class="donate-box">[Danh sách đóng góp]</div>
+    </section>
+
+    <!-- Các bài viết liên quan -->
+    <section class="section-box">
+        <h4>Các bài viết liên quan đến nhà tài trợ</h4>
+        <div class="row">
+            <div class="col-md-4"><div class="article-box">Bài viết 1</div></div>
+            <div class="col-md-4"><div class="article-box">Bài viết 2</div></div>
+            <div class="col-md-4"><div class="article-box">Bài viết 3</div></div>
+            <div class="col-md-4"><div class="article-box">Bài viết 4</div></div>
+            <div class="col-md-4"><div class="article-box">Bài viết 5</div></div>
+            <div class="col-md-4"><div class="article-box">Bài viết 6</div></div>
+        </div>
+    </section>
+
+</body>
+</html>
