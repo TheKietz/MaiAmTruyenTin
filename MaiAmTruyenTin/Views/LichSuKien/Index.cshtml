@@ -1,3 +1,80 @@
 ﻿@{
     ViewData["Title"] = "Lịch sự kiện";
 }
+
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <div class="page-title">
+            <h2 class="fw-bold mb-0">@ViewData["Title"]</h2>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <select class="form-select">
+                <option value="">-- Chọn danh mục sự kiện --</option>
+                <option value="1">Học tập</option>
+                <option value="2">Thiện nguyện</option>
+                <option value="3">Văn nghệ</option>
+            </select>
+        </div>
+        <div class="col-md-6 text-end">
+            <input type="text" class="form-control d-inline-block w-75" placeholder="Tìm kiếm sự kiện...">
+            <button class="btn btn-primary">Tìm</button>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="card p-3 mb-3">
+                <h5>Danh sách sự kiện</h5>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Sự kiện A</strong> - 20/08/2025 <br />
+                        Địa điểm: Hội trường A
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Sự kiện B</strong> - 25/08/2025 <br />
+                        Địa điểm: Nhà văn hóa
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Sự kiện C</strong> - 30/08/2025 <br />
+                        Địa điểm: Online Zoom
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Lịch -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Lịch</h5>
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'vi',
+            events: [
+                { title: 'Sự kiện A', start: '2025-08-20' },
+                { title: 'Sự kiện B', start: '2025-08-25' },
+                { title: 'Sự kiện C', start: '2025-08-30' }
+            ],
+            eventClick: function (info) {
+                alert('Chi tiết: ' + info.event.title + ' - ' + info.event.start.toLocaleDateString());
+            }
+        });
+        calendar.render();
+    });
+</script>
