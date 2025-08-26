@@ -1,18 +1,59 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
 body {
-    background-color: #e0e0e0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #fdfefe;
+    /* trắng sáng */
+    color: #333;
 }
 
+/* Header */
 header {
-    background: #fff;
-    border-bottom: 2px solid #ccc;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-    header .navbar-brand img {
-        height: 50px;
+    header .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0077cc;
+        /* xanh chủ đạo */
     }
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+    nav a:hover {
+        color: #0077cc;
+    }
+
+footer {
+    background: #0077cc;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
 
 .banner {
     background: #b0b0b0;
@@ -38,13 +79,6 @@ header {
     background: #808090;
     height: 200px;
     border-radius: 6px;
-}
-
-footer {
-    background: #999;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
 }
 
 
@@ -86,10 +120,3 @@ button.accept-policy {
   line-height: inherit;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
-}
