@@ -43,6 +43,12 @@ public partial class User
 
     public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
 
+    public virtual ICollection<Founder> FounderCreatedByNavigations { get; set; } = new List<Founder>();
+
+    public virtual ICollection<Founder> FounderDeletedByNavigations { get; set; } = new List<Founder>();
+
+    public virtual ICollection<Founder> FounderUpdatedByNavigations { get; set; } = new List<Founder>();
+
     public virtual ICollection<User> InverseCreatedByNavigation { get; set; } = new List<User>();
 
     public virtual ICollection<User> InverseDeletedByNavigation { get; set; } = new List<User>();
@@ -58,6 +64,12 @@ public partial class User
     public virtual ICollection<News> NewsDeletedByNavigations { get; set; } = new List<News>();
 
     public virtual ICollection<News> NewsUpdatedByNavigations { get; set; } = new List<News>();
+
+    public virtual ICollection<Sponsor> SponsorCreatedByNavigations { get; set; } = new List<Sponsor>();
+
+    public virtual ICollection<Sponsor> SponsorDeletedByNavigations { get; set; } = new List<Sponsor>();
+
+    public virtual ICollection<Sponsor> SponsorUpdatedByNavigations { get; set; } = new List<Sponsor>();
 
     public virtual ICollection<Student> StudentCreatedByNavigations { get; set; } = new List<Student>();
 

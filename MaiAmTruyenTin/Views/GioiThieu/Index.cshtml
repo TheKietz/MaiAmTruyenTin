@@ -1,32 +1,185 @@
 ﻿@{
     ViewData["Title"] = "Giới thiệu trung tâm";
 }
-<html lang="vi">
 <meta charset="utf-8" />
+<html lang="vi">
 <head>
     <style>
-        .banner {
-            background: url('@Url.Content("~/template/images/desktop_bg.png")') no-repeat center;
+
+        /* Block wrapper chung */
+        .cover-section {
+            position: relative;
+            background-image: url('/template/images/bg.jpg');
             background-size: cover;
-            padding: 100px 0;
-            color: whitesmoke;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #fafafa;
+            padding: 80px 20px;
             text-align: center;
+            color: #222;
         }
 
-            .banner h1 {
-                font-size: 36px;
+        .cover-section1 {
+            position: relative;
+            background-color: #fafafa;
+            padding: 80px 20px;
+            text-align: center;
+            color: #222;
+        }
+        /* Text styles */
+        .hero-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .body-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary-lg {
+            background-color: #f04d4d;
+            color: #fff;
+        }
+
+            .btn-primary-lg:hover {
+                background-color: #d63c3c;
             }
+
+        .foundation {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .foundation-box {
+            background: white;
+            height: 300px;
+            border-radius: 8px;
+        }
     </style>
-    </head>
+</head>
 <body>
 
     <main>
-        <section class="banner  w-100">
-            <div class="container">
-                <h1 style="color: #02ba5a">JobFinder- Tiếp lợi thế, nối thành công</h1>
-                <p>Với hệ sinh thái HR Tech, JobFinder luôn đồng hành để bạn thành công trong sự nghiệp</p>
-            </div>
-        </section>
+        @* nội dung trong banner *@
+        <div id="cover-block" class="block-wrapper cover-section">
+            <section class="w-section w-section--xxl">
+                <div class="w-section__inner">
+                    <header class="w-section__header text-center">
+                        <h2 class="hero-title">MÁI ẤM TRUYỀN TIN</h2>
+                        <p class="subtitle">We are influencing our community...</p>
+                        <p class="body-text"><strong>Come and join us every Sunday at 10:30 am.</strong></p>
+                    </header>
+
+                    <footer class="w-section__footer text-center">
+                        <a href="/#contacts" class="btn btn-primary-lg">DONATE NOW</a>
+                    </footer>
+                </div>
+            </section>
+        </div>
+        @* nội dung về chúng tôi *@
+        <div id="cover-block" class="block-wrapper" style="background-color:white">
+            <section class="w-section w-section--xxl">
+                <div class="row">
+                    <div class="col-md-6" style="padding:50px">
+                        <h2 class="hero-title">Về chúng tôi </h2>
+                        <p class="body-text">Mái Ấm Truyền Tin là một trung tâm cộng đồng phi lợi nhuận, được thành lập với sứ mệnh mang lại sự hỗ trợ và phát triển cho những người có hoàn cảnh khó khăn trong xã hội. Chúng tôi tin rằng mỗi người đều xứng đáng có cơ hội để phát triển và sống một cuộc sống đầy đủ, hạnh phúc.</p>
+                    </div>
+                    <div class="col-md-6" style="padding:50px">
+                        <img src="~/template/images/about.webp" alt="About Us" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                    </div>
+                </div>
+            </section>
+        </div>
+        @* các nhà thành lập *@
+        <div id="cover-block" class="block-wrapper" style="background-color:white">
+            <section class="foundation">
+                <div class="foundation-box">
+                    <div class="row">
+                        <div class="col-md-3" style="padding:20px">
+                            <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                        </div>
+                        <div class="col-md-9" style="padding:20px; text-align:left; display:flex; flex-direction:column; justify-content:center;">
+                            <p>
+                                <strong>Richard Nguyen</strong>
+                                <br />
+                                <span style="font-style: italic;">Giám đốc điều hành & Nhà sáng lập</span>
+                                <br />
+                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="foundation-box">
+                    <div class="row">
+                        <div class="col-md-3" style="padding:20px">
+                            <img src="~/template/images/founder1.webp" alt="Founder 2" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                        </div>
+                        <div class="col-md-9" style="padding:20px; text-align:left; display:flex; flex-direction:column; justify-content:center;">
+                            <p>
+                                <strong>Richard Nguyen</strong>
+                                <br />
+                                <span style="font-style: italic;">Giám đốc điều hành & Nhà sáng lập</span>
+                                <br />
+                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="foundation-box">
+                    <div class="row">
+                        <div class="col-md-3" style="padding:20px">
+                            <img src="~/template/images/founder1.webp" alt="Founder 3" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                        </div>
+                        <div class="col-md-9" style="padding:20px; text-align:left; display:flex; flex-direction:column; justify-content:center;">
+                            <p>
+                                <strong>Richard Nguyen</strong>
+                                <br />
+                                <span style="font-style: italic;">Giám đốc điều hành & Nhà sáng lập</span>
+                                <br />
+                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="foundation-box">
+                    <div class="row">
+                        <div class="col-md-3" style="padding:20px">
+                            <img src="~/template/images/founder1.webp" alt="Founder 4" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                        </div>
+                        <div class="col-md-9" style="padding:20px; text-align:left; display:flex; flex-direction:column; justify-content:center;">
+                            <p>
+                                <strong>Richard Nguyen</strong>
+                                <br />
+                                <span style="font-style: italic;">Giám đốc điều hành & Nhà sáng lập</span>
+                                <br />
+                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </main>
 
 </body>

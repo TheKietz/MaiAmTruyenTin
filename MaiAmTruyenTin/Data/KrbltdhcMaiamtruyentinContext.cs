@@ -23,9 +23,15 @@ public partial class KrbltdhcMaiamtruyentinContext : DbContext
 
     public virtual DbSet<Donation> Donations { get; set; }
 
+    public virtual DbSet<Founder> Founders { get; set; }
+
     public virtual DbSet<News> News { get; set; }
 
     public virtual DbSet<NewsImage> NewsImages { get; set; }
+
+    public virtual DbSet<Sponsor> Sponsors { get; set; }
+
+    public virtual DbSet<SponsorDonation> SponsorDonations { get; set; }
 
     public virtual DbSet<Student> Students { get; set; }
 
@@ -34,10 +40,6 @@ public partial class KrbltdhcMaiamtruyentinContext : DbContext
     public virtual DbSet<UserToken> UserTokens { get; set; }
 
     public virtual DbSet<Volunteer> Volunteers { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=125.212.218.22\\MSSQLSERVER2017;Database=krbltdhc_maiamtruyentin;User Id=krbltdhc_samatt;Password=MaiAmTruyenTin@123;TrustServerCertificate=True;Encrypt=False;MultipleActiveResultSets=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -122,6 +124,39 @@ public partial class KrbltdhcMaiamtruyentinContext : DbContext
                 .HasConstraintName("FK__Donations__UserI__0B91BA14");
         });
 
+        modelBuilder.Entity<Founder>(entity =>
+        {
+            entity.HasKey(e => e.FounderId).HasName("PK__Founders__CC808F81D2688E27");
+
+            entity.Property(e => e.Contribution).HasMaxLength(255);
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.IsDeleted)
+                .HasDefaultValue(false)
+                .HasColumnName("isDeleted");
+            entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.Property(e => e.Role).HasMaxLength(100);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+
+            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.FounderCreatedByNavigations)
+                .HasForeignKey(d => d.CreatedBy)
+                .HasConstraintName("FK__Founders__Create__3D2915A8");
+
+            entity.HasOne(d => d.DeletedByNavigation).WithMany(p => p.FounderDeletedByNavigations)
+                .HasForeignKey(d => d.DeletedBy)
+                .HasConstraintName("FK__Founders__Delete__40F9A68C");
+
+            entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.FounderUpdatedByNavigations)
+                .HasForeignKey(d => d.UpdatedBy)
+                .HasConstraintName("FK__Founders__Update__3F115E1A");
+        });
+
         modelBuilder.Entity<News>(entity =>
         {
             entity.HasKey(e => e.NewsId).HasName("PK__News__954EBDF3D4526F46");
@@ -180,6 +215,57 @@ public partial class KrbltdhcMaiamtruyentinContext : DbContext
                 .HasForeignKey(d => d.NewsId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__NewsImage__NewsI__08B54D69");
+        });
+
+        modelBuilder.Entity<Sponsor>(entity =>
+        {
+            entity.HasKey(e => e.SponsorId).HasName("PK__Sponsors__3B609ED5FE5B0AA5");
+
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.IsDeleted)
+                .HasDefaultValue(false)
+                .HasColumnName("isDeleted");
+            entity.Property(e => e.Logo).HasMaxLength(255);
+            entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.Property(e => e.Representative).HasMaxLength(100);
+            entity.Property(e => e.SponsorType).HasMaxLength(50);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Website).HasMaxLength(255);
+
+            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.SponsorCreatedByNavigations)
+                .HasForeignKey(d => d.CreatedBy)
+                .HasConstraintName("FK__Sponsors__Create__44CA3770");
+
+            entity.HasOne(d => d.DeletedByNavigation).WithMany(p => p.SponsorDeletedByNavigations)
+                .HasForeignKey(d => d.DeletedBy)
+                .HasConstraintName("FK__Sponsors__Delete__489AC854");
+
+            entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.SponsorUpdatedByNavigations)
+                .HasForeignKey(d => d.UpdatedBy)
+                .HasConstraintName("FK__Sponsors__Update__46B27FE2");
+        });
+
+        modelBuilder.Entity<SponsorDonation>(entity =>
+        {
+            entity.HasKey(e => e.DonationId).HasName("PK__SponsorD__C5082EFBD7F74A31");
+
+            entity.Property(e => e.Amount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.DonationDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Purpose).HasMaxLength(255);
+
+            entity.HasOne(d => d.Sponsor).WithMany(p => p.SponsorDonations)
+                .HasForeignKey(d => d.SponsorId)
+                .HasConstraintName("FK__SponsorDo__Spons__4B7734FF");
         });
 
         modelBuilder.Entity<Student>(entity =>
