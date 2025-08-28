@@ -9,6 +9,35 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/MaiAmTruyenTin.styles.css" asp-append-version="true" />
    </environment>
+   <style>
+        /* Floating buttons */
+        .floating-buttons {
+            position: fixed;
+            right: 10px;
+            bottom: 40px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+            .floating-buttons a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            }
+
+            .floating-buttons img {
+                width: 24px;
+                height: 24px;
+            }
+   </style>
 </head>
 
 <body>
@@ -55,6 +84,13 @@
         </main>
     </div>
     <footer>
+        <!-- Floating buttons -->
+        <div class="floating-buttons">
+            <a href="#"><img width="32" height="32" src="~/template/icons/phone.webp" alt="Call" loading="lazy" decoding="async"></a>
+            <a href="#"><img width="32" height="32" src="~/template/icons/messenger.png" alt="Messenger" loading="lazy" decoding="async"></a>
+            <a href="#"><img width="32" height="32"  src="~/template/icons/communication.png" alt="Facebook" loading="lazy" decoding="async"></a>
+            <a href="#"><img width="32" height="32"  src="~/template/icons/icon-zalo-1.png" alt="Zalo" loading="lazy" decoding="async"></a>
+        </div>
         <p>© 2025 Mái ấm truyền tin. All rights reserved.</p>
     </footer>
     

@@ -1,30 +1,31 @@
 ﻿@{
     ViewData["Title"] = "Tin tức";
 }
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
         .news-title {
             font-size: 36px;
             font-weight: bold;
-            text-align: center;
             margin: 40px 0 20px 0;
         }
 
         .news-card {
+            background: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            background: white;
+            margin-bottom: 30px;
         }
-
-            .news-card:hover {
-                transform: translateY(-5px);
-            }
 
             .news-card img {
                 width: 100%;
@@ -33,74 +34,182 @@
             }
 
         .news-card-body {
-            padding: 20px;
-        }
-
-        .news-card-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            padding: 15px;
         }
 
         .news-card-date {
-            font-size: 14px;
+            font-size: 13px;
             color: #888;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .news-card-description {
-            font-size: 16px;
-            color: #444;
+        .news-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .sidebar {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+            .sidebar h5 {
+                margin-top: 30px;
+                font-weight: bold;
+            }
+
+        .recent-posts img {
+            width: 100px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .recent-posts .post-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .recent-posts small {
+            color: #888;
+        }
+
+       
+
+        .search-input {
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-btn {
+            border-radius: 0 5px 5px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="news-title">Tin tức & Sự kiện</h1>
-
-        <div class="row g-4">
-            <!-- Bài viết 1 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="news-card">
-                    <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
-                    <div class="news-card-body">
-                        <div class="news-card-title">Chương trình quyên góp tháng 8</div>
-                        <div class="news-card-date">28 Tháng 8, 2025</div>
-                        <div class="news-card-description">
-                            Trung tâm đã tổ chức buổi quyên góp hàng tháng với sự tham gia của hơn 200 người dân tại địa phương...
-                        </div>
-                    </div>    
-                </div>
-            </div>
-
-            <!-- Bài viết 2 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="news-card">
-                    <img src="~/template/images/news2.jpg" alt="Ảnh bài viết">
-                    <div class="news-card-body">
-                        <div class="news-card-title">Khóa huấn luyện kỹ năng sống</div>
-                        <div class="news-card-date">15 Tháng 8, 2025</div>
-                        <div class="news-card-description">
-                            Mái ấm Truyền Tin đã mở khóa học kỹ năng sống miễn phí cho thanh thiếu niên từ 13–18 tuổi...
+    <div class="container py-5">
+        <h2 class="news-title">Tin tức & Hoạt động</h2>
+        <div class="row">
+            <!-- Danh sách bài viết -->
+            <div class="col-lg-8">               
+                <div class="row">
+                    <!-- Bài viết 1 -->
+                    <div class="col-md-6 col-xl-4">
+                        <div class="news-card">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
+                            <div class="news-card-body">
+                                <div class="news-card-date">20 Th6 - 2025 | Tin tức</div>
+                                <div class="news-card-title">BA BỆNH NHÂN ĐẦU TIÊN ĐƯỢC CHỮA KHỎI HIV TRÊN THẾ GIỚI</div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="news-card">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
+                            <div class="news-card-body">
+                                <div class="news-card-date">20 Th6 - 2025 | Tin tức</div>
+                                <div class="news-card-title">BA BỆNH NHÂN ĐẦU TIÊN ĐƯỢC CHỮA KHỎI HIV TRÊN THẾ GIỚI</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="news-card">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
+                            <div class="news-card-body">
+                                <div class="news-card-date">20 Th6 - 2025 | Tin tức</div>
+                                <div class="news-card-title">BA BỆNH NHÂN ĐẦU TIÊN ĐƯỢC CHỮA KHỎI HIV TRÊN THẾ GIỚI</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="news-card">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
+                            <div class="news-card-body">
+                                <div class="news-card-date">20 Th6 - 2025 | Tin tức</div>
+                                <div class="news-card-title">BA BỆNH NHÂN ĐẦU TIÊN ĐƯỢC CHỮA KHỎI HIV TRÊN THẾ GIỚI</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="news-card">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
+                            <div class="news-card-body">
+                                <div class="news-card-date">20 Th6 - 2025 | Tin tức</div>
+                                <div class="news-card-title">BA BỆNH NHÂN ĐẦU TIÊN ĐƯỢC CHỮA KHỎI HIV TRÊN THẾ GIỚI</div>
+                            </div>
+                        </div>
+                    </div>                   
                 </div>
             </div>
 
-            <!-- Bài viết 3 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="news-card">
-                    <img src="~/template/images/news3.jpg" alt="Ảnh bài viết">
-                    <div class="news-card-body">
-                        <div class="news-card-title">Hợp tác với trường đại học</div>
-                        <div class="news-card-date">2 Tháng 8, 2025</div>
-                        <div class="news-card-description">
-                            Chúng tôi đã ký kết hợp tác với Đại học ABC để mang lại cơ hội học bổng cho các bạn trẻ khó khăn...
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <!-- Search -->
+                    <form class="d-flex mb-4">
+                        <input class="form-control search-input" type="search" placeholder="Nhập nội dung tìm kiếm">
+                        <button class="btn btn-info search-btn text-white" type="submit">
+                            <i class="bi bi-search"></i> 🔍
+                        </button>
+                    </form>
+
+                    <!-- Danh mục -->
+                    <h5>DANH MỤC BÀI VIẾT</h5>
+                    <ul class="list-unstyled">
+                        <li>▶ Tin tức <span class="text-muted float-end">28</span></li>
+                        <li>▶ Thành Tựu Và Đóng Góp Xã Hội <span class="text-muted float-end">13</span></li>
+                        <li>▶ Sự Kiện <span class="text-muted float-end">3</span></li>
+                        <li>▶ Cơ sở hoạt động <span class="text-muted float-end">4</span></li>
+                        <li>▶ Câu Chuyện Thành Công <span class="text-muted float-end">2</span></li>
+                    </ul>
+
+                    <!-- 5 Bài viết gần đây -->
+                    <h5>BÀI VIẾT GẦN ĐÂY</h5>
+                    <div class="recent-posts">
+                        <div class="d-flex mb-3">
+                            <img src="~/template/images/news1.jpg" alt="">
+                            <div>
+                                <small>20 Th6 - 2025 | Tin tức</small>
+                                <p class="post-title">BA BỆNH NHÂN ĐẦU TIÊN ĐƯỢC CHỮA KHỎI HIV...</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <img src="~/template/images/news2.jpg" alt="">
+                            <div>
+                                <small>20 Th6 - 2025 | Tin tức</small>
+                                <p class="post-title">[VIDEO] SỨ MỆNH BÁC ÁI CỦA MÁI ẤM...</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <img src="~/template/images/news2.jpg" alt="">
+                            <div>
+                                <small>20 Th6 - 2025 | Tin tức</small>
+                                <p class="post-title">[VIDEO] SỨ MỆNH BÁC ÁI CỦA MÁI ẤM...</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <img src="~/template/images/news2.jpg" alt="">
+                            <div>
+                                <small>20 Th6 - 2025 | Tin tức</small>
+                                <p class="post-title">[VIDEO] SỨ MỆNH BÁC ÁI CỦA MÁI ẤM...</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <img src="~/template/images/news2.jpg" alt="">
+                            <div>
+                                <small>20 Th6 - 2025 | Tin tức</small>
+                                <p class="post-title">[VIDEO] SỨ MỆNH BÁC ÁI CỦA MÁI ẤM...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 </html>
