@@ -1,78 +1,106 @@
 ﻿@{
     ViewData["Title"] = "Tin tức";
 }
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        
-        /* Section Tin tức nổi bật */
-        .hero {
-            background: linear-gradient(135deg, #cce7ff, #e6f2ff);
-            text-align: center;
-            padding: 60px 20px;
-            font-size: 24px;
+        .news-title {
+            font-size: 36px;
             font-weight: bold;
+            text-align: center;
+            margin: 40px 0 20px 0;
         }
 
-        /* Sự kiện mới */
-        .events {
-            display: flex;
-            gap: 20px;
-            padding: 30px;
+        .news-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            background: white;
         }
 
-        .event-box {
-            flex: 1;
-            background: linear-gradient(135deg, #cce7ff, #e6f2ff);
-            height: 150px;
-            border-radius: 8px;
+            .news-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .news-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+        .news-card-body {
+            padding: 20px;
         }
 
-        /* Bài viết chia sẻ */
-        .articles {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        .news-card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        .article-box {
-            background: #0077cc;
-            height: 120px;
-            border-radius: 8px;
+        .news-card-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
         }
 
-       
+        .news-card-description {
+            font-size: 16px;
+            color: #444;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1 class="news-title">Tin tức & Sự kiện</h1>
 
-    <!-- Tin tức nổi bật -->
-    <section class="hero">
-        Tin tức nổi bật / Thông báo
-    </section>
+        <div class="row g-4">
+            <!-- Bài viết 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <img src="~/template/images/news1.jpg" alt="Ảnh bài viết">
+                    <div class="news-card-body">
+                        <div class="news-card-title">Chương trình quyên góp tháng 8</div>
+                        <div class="news-card-date">28 Tháng 8, 2025</div>
+                        <div class="news-card-description">
+                            Trung tâm đã tổ chức buổi quyên góp hàng tháng với sự tham gia của hơn 200 người dân tại địa phương...
+                        </div>
+                    </div>    
+                </div>
+            </div>
 
-    <!-- Sự kiện -->
-    <section class="events">
-        <div class="event-box">Sự kiện 1</div>
-        <div class="event-box">Sự kiện 2</div>
-    </section>
+            <!-- Bài viết 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <img src="~/template/images/news2.jpg" alt="Ảnh bài viết">
+                    <div class="news-card-body">
+                        <div class="news-card-title">Khóa huấn luyện kỹ năng sống</div>
+                        <div class="news-card-date">15 Tháng 8, 2025</div>
+                        <div class="news-card-description">
+                            Mái ấm Truyền Tin đã mở khóa học kỹ năng sống miễn phí cho thanh thiếu niên từ 13–18 tuổi...
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Bài viết -->
-    <section class="articles">
-        <div class="article-box">Bài viết 1</div>
-        <div class="article-box">Bài viết 2</div>
-        <div class="article-box">Bài viết 3</div>
-        <div class="article-box">Bài viết 4</div>
-        <div class="article-box">Bài viết 5</div>
-        <div class="article-box">Bài viết 6</div>
-        <div class="article-box">Bài viết 7</div>
-        <div class="article-box">Bài viết 8</div>
-        <div class="article-box">Bài viết 9</div>
-        <div class="article-box">Bài viết 9</div>
-    </section>
-
+            <!-- Bài viết 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <img src="~/template/images/news3.jpg" alt="Ảnh bài viết">
+                    <div class="news-card-body">
+                        <div class="news-card-title">Hợp tác với trường đại học</div>
+                        <div class="news-card-date">2 Tháng 8, 2025</div>
+                        <div class="news-card-description">
+                            Chúng tôi đã ký kết hợp tác với Đại học ABC để mang lại cơ hội học bổng cho các bạn trẻ khó khăn...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
