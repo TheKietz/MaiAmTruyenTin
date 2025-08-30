@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MaiAmTruyenTin.ViewModels.DangKyTinhNguyenVM;
+@{
     ViewData["Title"] = "Đăng ký tình nguyện";
 }
 <!DOCTYPE html>
@@ -29,8 +30,8 @@
 
         .form-section {
             background: white;
-            padding: 80px 20px;
-            margin: 30px auto;
+            padding: 30px 20px;
+            margin: 15px auto;
             border-radius: 8px;
         }
 
@@ -39,10 +40,39 @@
             padding: 40px 20px;
         }
 
+        .news-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 40px 0 20px 0;
+        }
+
         .news-card {
-            background: #808090;
-            height: 200px;
-            border-radius: 6px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+            .news-card img {
+                height:150px;
+                object-fit: cover;
+            }
+
+        .news-card-body {
+            padding: 8px;
+        }
+
+        .news-card-date {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .news-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
         }
     </style>
 </head>
@@ -53,7 +83,7 @@
         <p>Đoạn giới thiệu ngắn gọn về chương trình hoặc tổ chức</p>
     </section>
 
-    <div class="row g-3" style="background-color:whitesmoke">
+    <div class="row" style="background-color:whitesmoke">
         <!-- câu mời gọi -->
         <div class="col-12 col-md-6">
             <div style="padding: 80px 20px; margin: 30px auto;">
@@ -109,21 +139,20 @@
         <div class="container">
             <h2 class="text-center mb-4">Tin tức tình nguyện</h2>
             <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="news-card d-flex align-items-center justify-content-center text-white">
-                        Bài viết 1
+                @foreach (var item in Model.volunteerNews)
+                {
+                    <div class="col-md-4">
+                        <div class="news-card" style="width:300px; height: 250px; display: flex; flex-direction: column;">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết" style="object-fit: cover;">
+                            <div class="news-card-body" style="flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                                <div class="news-card-date" style="font-size: 13px; color: #888; margin-bottom: 8px;">@item.CreatedAt | @item.Category?.Name</div>
+                                <a href="#tintuc" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                    @item.Title
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="news-card d-flex align-items-center justify-content-center text-white">
-                        Bài viết 2
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="news-card d-flex align-items-center justify-content-center text-white">
-                        Bài viết 3
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </section>

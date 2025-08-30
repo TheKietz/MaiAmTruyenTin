@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MaiAmTruyenTin.ViewModels.GioiThieuVM;
+@{
     ViewData["Title"] = "Giới thiệu trung tâm";
 }
 
@@ -300,66 +301,27 @@
         </div>
         @* các nhà thành lập *@
         <div id="cover-block" class="block-wrapper" style="background-color:white">
-            <h2 class="vision-title">Nhà thành lập</h2>
+            <h2 class="vision-title">Nhà sáng lập</h2>
             <div class="vision-underline"></div>
             <section class="foundation">
-                <div class="foundation-box">
-                    <div class="row">
-                        <div class="col-md-3" style="padding:20px">
-                            <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
-                        </div>
-                        <div class="col-md-9 bio-container">
-                            <p style="text-align:justify">
-                                <span class="bio-name">Richard Nguyen</span>
-                                <span class="bio-title">Giám đốc điều hành & Nhà sáng lập</span>
-                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="foundation-box">
-                    <div class="row">
-                        <div class="col-md-3" style="padding:20px">
-                            <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
-                        </div>
-                        <div class="col-md-9 bio-container">
-                            <p style="text-align:justify">
-                                <span class="bio-name">Richard Nguyen</span>
-                                <span class="bio-title">Giám đốc điều hành & Nhà sáng lập</span>
-                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
-                            </p>
+                @foreach(var item in Model.AllFounder)
+                {
+                    <div class="foundation-box">
+                        <div class="row">
+                            <div class="col-md-3" style="padding:20px">
+                                <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                            </div>
+                            <div class="col-md-9 bio-container">
+                                <p style="text-align:justify">
+                                    <span class="bio-name">@item.FullName</span>
+                                    <span class="bio-title">@item.Role</span>
+                                    @item.Notes
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="foundation-box">
-                    <div class="row">
-                        <div class="col-md-3" style="padding:20px">
-                            <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
-                        </div>
-                        <div class="col-md-9 bio-container">
-                            <p style="text-align:justify">
-                                <span class="bio-name">Richard Nguyen</span>
-                                <span class="bio-title">Giám đốc điều hành & Nhà sáng lập</span>
-                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="foundation-box">
-                    <div class="row">
-                        <div class="col-md-3" style="padding:20px">
-                            <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
-                        </div>
-                        <div class="col-md-9 bio-container">
-                            <p style="text-align:justify">
-                                <span class="bio-name">Richard Nguyen</span>
-                                <span class="bio-title">Giám đốc điều hành & Nhà sáng lập</span>
-                                Richard has grown up in a Christian family. After graduating from theological studies, he served as a hospital chaplain as well as leading mission teams in India and Africa while he was at school. Richard also played an important role in the creation of the Biblical Counselors Association, a ministry that teaches pastors and leaders to advise on the biblical point of view.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
+                }             
+
             </section>
         </div>
         @*Logo các nhà tài trợ*@
@@ -369,22 +331,10 @@
                 <div class="vision-underline"></div>
                 <div class="sponsor-carousel">
                     <div class="sponsor-track">
-                        <img src="~/template/images/sponsor1.png" alt="Sponsor 1" />
-                        <img src="~/template/images/sponsor2.png" alt="Sponsor 2" />
-                        <img src="~/template/images/sponsor3.png" alt="Sponsor 3" />
-                        <img src="~/template/images/sponsor4.png" alt="Sponsor 4" />
-                        <img src="~/template/images/sponsor5.png" alt="Sponsor 5" />
-                        <img src="~/template/images/sponsor6.png" alt="Sponsor 6" />
-                        <img src="~/template/images/sponsor7.png" alt="Sponsor 7" />
-                        <img src="~/template/images/sponsor8.png" alt="Sponsor 8" />
-                        <img src="~/template/images/sponsor9.png" alt="Sponsor 9" />
-                        <img src="~/template/images/sponsor10.png" alt="Sponsor 10" />
-                        <img src="~/template/images/sponsor11.png" alt="Sponsor 11" />
-                        <img src="~/template/images/sponsor12.png" alt="Sponsor 12" />
-                        <img src="~/template/images/sponsor12.png" alt="Sponsor 13" />
-                        <img src="~/template/images/sponsor12.png" alt="Sponsor 14" />
-                        <img src="~/template/images/sponsor12.png" alt="Sponsor 15" />
-                        <img src="~/template/images/sponsor12.png" alt="Sponsor 16" />
+                        @foreach(var item in Model.AllSponsor)
+                        {
+                            <img src="~/template/images/sponsor1.png" alt="Sponsor 1" />
+                        }                     
                     </div>
                 </div>
             </div>
