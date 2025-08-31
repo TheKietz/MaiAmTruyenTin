@@ -23,4 +23,14 @@
     <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Content\ckfinder\userfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CKFinder">
+      <HintPath>C:\Users\11090\Documents\Zalo Received Files\CKFinder.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

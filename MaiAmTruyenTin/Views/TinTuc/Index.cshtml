@@ -109,7 +109,7 @@
                                         @(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "")
                                         | @item.Category?.Name
                                     </div>
-                                    <a href="#tintuc" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                    <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                         @item.Title
                                     </a>
                                 </div>
@@ -147,7 +147,7 @@
                         {
                             <li>
                                 ▶
-                                <a href="#new/@item.CategoryName"
+                                <a href="#"
                                    style="text-decoration: none; color: dimgray; flex-grow: 1;"
                                    onmouseover="this.style.color='blue'"
                                    onmouseout="this.style.color='dimgray'">@(item.CategoryName)</a>
@@ -161,7 +161,7 @@
                         @foreach (var item in Model.RecentNews)
                         {
                             <div class="d-flex mb-3 align-items-center">
-                                <a href="/tintuc" style="display: inline-block; cursor: pointer;">
+                                <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="display: inline-block; cursor: pointer;">
                                     <img src="@Url.Content("~/template/images/news1.jpg")" alt="thuml" style="width:70px; height:70px; object-fit: cover;">
                                 </a>
                                 <div style="width: calc(100% - 60px); padding-left: 10px; overflow: hidden;">
@@ -170,7 +170,7 @@
                                         | @item.Category?.Name
                                     </small>
                                     <p class="post-title" style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <a href="#tintuc" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                        <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                             @item.Title
                                         </a>
                                     </p>

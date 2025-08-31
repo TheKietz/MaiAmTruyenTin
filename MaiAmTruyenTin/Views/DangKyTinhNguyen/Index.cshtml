@@ -146,7 +146,7 @@
                             <img src="~/template/images/news1.jpg" alt="Ảnh bài viết" style="object-fit: cover;">
                             <div class="news-card-body" style="flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                                 <div class="news-card-date" style="font-size: 13px; color: #888; margin-bottom: 8px;">@item.CreatedAt | @item.Category?.Name</div>
-                                <a href="#tintuc" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                     @item.Title
                                 </a>
                             </div>

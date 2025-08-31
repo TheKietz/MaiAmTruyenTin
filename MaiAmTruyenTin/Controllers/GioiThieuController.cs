@@ -15,8 +15,10 @@ namespace MaiAmTruyenTin.Controllers
         // GET: IntroductionController
         public ActionResult Index()
         {
+            // Lấy dữ liệu nhà sáng lập và nhà tài trợ
             var sponsor = db.Sponsors.ToList();
             var founder = db.Founders.ToList();
+            // Tạo ViewModel
             var vm = new GioiThieuVM
             {
                 AllFounder = founder,

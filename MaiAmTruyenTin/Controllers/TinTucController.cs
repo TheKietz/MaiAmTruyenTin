@@ -16,27 +16,29 @@ namespace MaiAmTruyenTin.Controllers
         // GET: NewsController
         public  IActionResult Index(int? page)
         {
+            // Phân trang
             int pageSize = 6; 
             int pageNumber = page==null||page<0 ? 1:page.Value;
-
+            // Lấy dữ liệu đã phân trang
             var data = db.News
              .Include(n => n.Category)
              .OrderByDescending(n => n.CreatedAt)
              .ToPagedList(pageNumber, pageSize);
 
-
+            // Đếm số lượng tin theo từng chuyên mục
             var newsCountByCategory = db.News
                         .GroupBy(n => n.Category.Name)
                         .Select(g => new NewsCategoryCountVM
                         {
                             CategoryName = g.Key,
-                            NewsCount = g.Count()
+                            NewsCount = g.Count(),
+                           
                         })
                         .ToList();
-
+            // Tạo ViewModel
             var vm = new TinTucVM
             {
-                AllNewsPaged = data, // dùng pagedlist thay vì list
+                AllNewsPaged = data, 
                 RecentNews = db.News
                        .Include(n => n.Category)
                        .OrderByDescending(n => n.CreatedAt)
@@ -48,6 +50,31 @@ namespace MaiAmTruyenTin.Controllers
             return View(vm);
         }
 
+        public IActionResult Details(int id)
+        {
+            // Lấy chi tiết tin tức
+            var news = db.News
+                         .Include(n => n.Category)
+                         .FirstOrDefault(n => n.NewsId == id);
+
+            if (news == null)
+                return NotFound();
+
+            // lấy thêm tin liên quan
+            var relatedNews = db.News
+                                .Where(n => n.CategoryId == news.CategoryId && n.NewsId != news.NewsId)
+                                .OrderByDescending(n => n.CreatedAt)
+                                .Take(5)
+                                .ToList();
+            // Tạo ViewModel
+            var vm = new NewsDetailVM
+            {
+                News = news,
+                RelatedNews = relatedNews
+            };
+
+            return View(vm);
+        }
 
     }
 }
