@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MaiAmTruyenTin.Data;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MaiAmTruyenTin.Areas.Admin.Controllers
 {
@@ -13,10 +15,12 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
     public class NewsController : Controller
     {
         private readonly KrbltdhcMaiamtruyentinContext _context;
+        private readonly FileUploadHelper _fileHelper;
 
-        public NewsController(KrbltdhcMaiamtruyentinContext context)
+        public NewsController(KrbltdhcMaiamtruyentinContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _fileHelper = new FileUploadHelper(env);
         }
 
         // GET: Admin/News
@@ -67,22 +71,19 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NewsId,Title,Content,CoverImage,CategoryId,AuthorId,Status,ViewCount,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt,ApprovedBy,ApprovedAt")] News news)
+        public async Task<IActionResult> Create(News news, IFormFile? CoverImageFile)
         {
             if (ModelState.IsValid)
             {
+                news.CoverImage = await _fileHelper.UploadFile(CoverImageFile); // dùng chung helper
+
                 _context.Add(news);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApprovedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.ApprovedBy);
-            ViewData["AuthorId"] = new SelectList(_context.Users, "UserId", "UserId", news.AuthorId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", news.CategoryId);
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.CreatedBy);
-            ViewData["DeletedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.DeletedBy);
-            ViewData["UpdatedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.UpdatedBy);
             return View(news);
         }
+
 
         // GET: Admin/News/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -190,5 +191,48 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         {
             return _context.News.Any(e => e.NewsId == id);
         }
+        //[HttpPost]
+        //[HttpPost]
+        //public async Task<IActionResult> UploadImage(IFormFile upload)
+        //{
+        //    if (upload != null && upload.Length > 0)
+        //    {
+        //        var uploadDir = Path.Combine(_env.WebRootPath, "uploads");
+        //        if (!Directory.Exists(uploadDir))
+        //            Directory.CreateDirectory(uploadDir);
+
+        //        var fileName = Guid.NewGuid() + Path.GetExtension(upload.FileName); // tên file hợp lệ
+        //        var filePath = Path.Combine(uploadDir, fileName);
+
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await upload.CopyToAsync(stream);
+        //        }
+
+        //        return Json(new
+        //        {
+        //            uploaded = 1,
+        //            fileName = fileName,
+        //            url = "/uploads/" + fileName
+        //        });
+        //    }
+
+        //    return Json(new { uploaded = 0, error = new { message = "No file uploaded" } });
+        //}
+
+
+        //[HttpGet]
+        //public IActionResult UploadExplorer()
+        //{
+        //    var uploadDir = Path.Combine(_env.WebRootPath, "uploads");
+        //    if (!Directory.Exists(uploadDir))
+        //        Directory.CreateDirectory(uploadDir);
+
+        //    var dir = new DirectoryInfo(uploadDir);
+        //    ViewBag.fileInfo = dir.GetFiles();
+
+        //    return View("FileExplorer");
+        //}
+
     }
 }

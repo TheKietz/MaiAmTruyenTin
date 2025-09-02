@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MaiAmTruyenTin.Areas.Admin.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace MaiAmTruyenTin.Data;
 
@@ -14,7 +15,7 @@ public partial class KrbltdhcMaiamtruyentinContext : DbContext
         : base(options)
     {
     }
-
+    
     public virtual DbSet<Activity> Activities { get; set; }
 
     public virtual DbSet<ActivityVolunteer> ActivityVolunteers { get; set; }

@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\Content\**" />
-    <Content Remove="wwwroot\Content\**" />
-    <EmbeddedResource Remove="wwwroot\Content\**" />
-    <None Remove="wwwroot\Content\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\template\images\bg.jpg" />
     <None Include="wwwroot\template\images\desktop_bg.png" />
   </ItemGroup>
@@ -30,13 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="CKFinder">
-      <HintPath>C:\Users\11090\Documents\Zalo Received Files\CKFinder.dll</HintPath>
-    </Reference>
+    <Folder Include="wwwroot\Content\ckfinder\userfiles\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

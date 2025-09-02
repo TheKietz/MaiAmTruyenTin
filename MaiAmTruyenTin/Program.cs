@@ -1,7 +1,11 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Elfie.Serialization;
 using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<FileUploadHelper>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
