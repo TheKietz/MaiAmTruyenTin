@@ -7,8 +7,8 @@ namespace MaiAmTruyenTin.Controllers
 {
     public class GioiThieuController : Controller
     {
-        private readonly KrbltdhcMaiamtruyentinContext db;
-        public GioiThieuController(KrbltdhcMaiamtruyentinContext context)
+        private readonly MaiamtruyentinContext db;
+        public GioiThieuController(MaiamtruyentinContext context)
         {
             db = context;
         }

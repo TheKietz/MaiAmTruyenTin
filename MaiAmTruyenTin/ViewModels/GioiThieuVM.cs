@@ -1,4 +1,5 @@
 ﻿using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Models;
 
 namespace MaiAmTruyenTin.ViewModels
 {

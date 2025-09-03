@@ -1,4 +1,6 @@
 ﻿using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Models;
+using MaiAmTruyenTin.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,8 +8,8 @@ namespace MaiAmTruyenTin.Controllers
 {
     public class DangKyTinhNguyenController : Controller
     {
-        private readonly KrbltdhcMaiamtruyentinContext db;
-        public DangKyTinhNguyenController(KrbltdhcMaiamtruyentinContext context) => db = context;
+        private readonly MaiamtruyentinContext db;
+        public DangKyTinhNguyenController(MaiamtruyentinContext context) => db = context;
         public IActionResult Index()
         {
             // Lấy 3 tin tức mới nhất thuộc chuyên mục "Tình nguyện"

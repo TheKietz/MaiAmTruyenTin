@@ -5,8 +5,8 @@ namespace MaiAmTruyenTin.ViewModels
 {
     public class LoaiBaiVietViewComponent : ViewComponent
     {
-        private readonly KrbltdhcMaiamtruyentinContext db;
-        public LoaiBaiVietViewComponent(KrbltdhcMaiamtruyentinContext context)
+        private readonly MaiamtruyentinContext db;
+        public LoaiBaiVietViewComponent(MaiamtruyentinContext context)
         {
             db = context;
         }
@@ -14,9 +14,10 @@ namespace MaiAmTruyenTin.ViewModels
 
         public IViewComponentResult Invoke()
         {
-            var data = db.Categories.Select( lo => new LoaiBaiVietVM
+            var data = db.Categories.Select(lo => new LoaiBaiVietVM
             {
-                CategoryId= lo.CategoryId, Name= lo.Name
+                CategoryId = lo.CategoryId,
+                Name = lo.Name
             }).ToList();
             return View(data);
         }

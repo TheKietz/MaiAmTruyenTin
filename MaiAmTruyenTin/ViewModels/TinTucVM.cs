@@ -1,4 +1,4 @@
-﻿using MaiAmTruyenTin.Data;
+﻿using MaiAmTruyenTin.Models;
 using X.PagedList;
 
 namespace MaiAmTruyenTin.ViewModels

@@ -1,10 +1,14 @@
-﻿using MaiAmTruyenTin.Data;
+﻿using MaiAmTruyenTin.Areas.Admin.ViewModels;
+using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Models;
 using MaiAmTruyenTin.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +16,12 @@ using System.Threading.Tasks;
 namespace MaiAmTruyenTin.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class NewsController : Controller
+    public class NewsAdminController : Controller
     {
-        private readonly KrbltdhcMaiamtruyentinContext _context;
+        private readonly MaiamtruyentinContext _context;
         private readonly FileUploadHelper _fileHelper;
 
-        public NewsController(KrbltdhcMaiamtruyentinContext context, IWebHostEnvironment env)
+        public NewsAdminController(MaiamtruyentinContext context, IWebHostEnvironment env)
         {
             _context = context;
             _fileHelper = new FileUploadHelper(env);
@@ -26,63 +30,90 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         // GET: Admin/News
         public async Task<IActionResult> Index()
         {
-            var krbltdhcMaiamtruyentinContext = _context.News.Include(n => n.ApprovedByNavigation).Include(n => n.Author).Include(n => n.Category).Include(n => n.CreatedByNavigation).Include(n => n.DeletedByNavigation).Include(n => n.UpdatedByNavigation);
-            return View(await krbltdhcMaiamtruyentinContext.ToListAsync());
+            var list = _context.News
+                //.Include(n => n.Category)
+                //.Include(n => n.Author)
+                .Select(n => new TinTucVM
+                {
+                    NewsId = n.NewsId,
+                    Title = n.Title,
+                    CoverImage = n.CoverImage,
+                    Status = n.Status,
+                    CreatedAt = n.CreatedAt,
+                    AuthorName = n.Author != null ? n.Author.FullName : "",
+                    CategoryName = n.Category != null ? n.Category.Name : ""
+                })
+                .ToList();
+
+            return View(list);
         }
 
-        // GET: Admin/News/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Admin/News/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var news = await _context.News
-                .Include(n => n.ApprovedByNavigation)
-                .Include(n => n.Author)
-                .Include(n => n.Category)
-                .Include(n => n.CreatedByNavigation)
-                .Include(n => n.DeletedByNavigation)
-                .Include(n => n.UpdatedByNavigation)
-                .FirstOrDefaultAsync(m => m.NewsId == id);
-            if (news == null)
-            {
-                return NotFound();
-            }
+        //    var news = await _context.News
+        //        .Include(n => n.ApprovedByNavigation)
+        //        .Include(n => n.Author)
+        //        .Include(n => n.Category)
+        //        .Include(n => n.CreatedByNavigation)
+        //        .Include(n => n.DeletedByNavigation)
+        //        .Include(n => n.UpdatedByNavigation)
+        //        .FirstOrDefaultAsync(m => m.NewsId == id);
+        //    if (news == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(news);
-        }
+        //    return View(news);
+        //}
 
         // GET: Admin/News/Create
         public IActionResult Create()
         {
-            ViewData["ApprovedBy"] = new SelectList(_context.Users, "UserId", "UserId");
-            ViewData["AuthorId"] = new SelectList(_context.Users, "UserId", "UserId");
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "UserId");
-            ViewData["DeletedBy"] = new SelectList(_context.Users, "UserId", "UserId");
-            ViewData["UpdatedBy"] = new SelectList(_context.Users, "UserId", "UserId");
+            ViewData["ApprovedBy"] = new SelectList(_context.Users, "UserId", "FullName");
+            ViewData["AuthorId"] = new SelectList(_context.Users, "UserId", "FullName");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
+            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "FullName");
+            ViewData["DeletedBy"] = new SelectList(_context.Users, "UserId", "FullName");
+            ViewData["UpdatedBy"] = new SelectList(_context.Users, "UserId", "FullName");
+
             return View();
         }
+
 
         // POST: Admin/News/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(News news, IFormFile? CoverImageFile)
+        public async Task<IActionResult> Create(TinTucVM vm, IFormFile? CoverImageFile)
         {
             if (ModelState.IsValid)
             {
-                news.CoverImage = await _fileHelper.UploadFile(CoverImageFile); // dùng chung helper
+                var news = new News
+                {
+                    Title = vm.Title,
+                    Content = vm.Content,
+                    Status = vm.Status,
+                    //AuthorId = vm.AuthorId,
+                    CategoryId = vm.CategoryId,
+                    CreatedAt = DateTime.Now,
+                    CoverImage = await _fileHelper.UploadFile(CoverImageFile)
 
+                };
                 _context.Add(news);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(news);
+
+            return View(vm);
         }
+
 
 
         // GET: Admin/News/Edit/5
@@ -110,11 +141,12 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         // POST: Admin/News/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Admin/News/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NewsId,Title,Content,CoverImage,CategoryId,AuthorId,Status,ViewCount,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt,ApprovedBy,ApprovedAt")] News news)
+        public async Task<IActionResult> Edit(int id, TinTucVM vm, IFormFile? CoverImageFile)
         {
-            if (id != news.NewsId)
+            if (id != vm.NewsId)
             {
                 return NotFound();
             }
@@ -123,12 +155,31 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
             {
                 try
                 {
+                    var news = await _context.News.FindAsync(id);
+                    if (news == null) return NotFound();
+
+                    // Cập nhật các field
+                    news.Title = vm.Title;
+                    news.Content = vm.Content;
+                    news.Status = vm.Status;
+                    news.AuthorId = vm.AuthorId;
+                    news.CategoryId = vm.CategoryId;
+                    news.UpdatedAt = DateTime.Now;
+                    news.UpdatedBy = vm.UpdatedBy;
+
+                    // Ảnh mới
+                    if (CoverImageFile != null)
+                    {
+                        news.CoverImage = await _fileHelper.UploadFile(CoverImageFile);
+                    }
+                    // Nếu không upload, giữ nguyên CoverImage cũ (không cần xử lý thêm)
+
                     _context.Update(news);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NewsExists(news.NewsId))
+                    if (!NewsExists(vm.NewsId))
                     {
                         return NotFound();
                     }
@@ -139,38 +190,17 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApprovedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.ApprovedBy);
-            ViewData["AuthorId"] = new SelectList(_context.Users, "UserId", "UserId", news.AuthorId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", news.CategoryId);
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.CreatedBy);
-            ViewData["DeletedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.DeletedBy);
-            ViewData["UpdatedBy"] = new SelectList(_context.Users, "UserId", "UserId", news.UpdatedBy);
-            return View(news);
+
+            ViewData["ApprovedBy"] = new SelectList(_context.Users, "UserId", "UserId", vm.ApprovedBy);
+            ViewData["AuthorId"] = new SelectList(_context.Users, "UserId", "UserId", vm.AuthorId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", vm.CategoryId);
+            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "UserId", vm.CreatedBy);
+            ViewData["DeletedBy"] = new SelectList(_context.Users, "UserId", "UserId", vm.DeletedBy);
+            ViewData["UpdatedBy"] = new SelectList(_context.Users, "UserId", "UserId", vm.UpdatedBy);
+
+            return View(vm);
         }
 
-        // GET: Admin/News/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var news = await _context.News
-                .Include(n => n.ApprovedByNavigation)
-                .Include(n => n.Author)
-                .Include(n => n.Category)
-                .Include(n => n.CreatedByNavigation)
-                .Include(n => n.DeletedByNavigation)
-                .Include(n => n.UpdatedByNavigation)
-                .FirstOrDefaultAsync(m => m.NewsId == id);
-            if (news == null)
-            {
-                return NotFound();
-            }
-
-            return View(news);
-        }
 
         // POST: Admin/News/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -191,7 +221,7 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         {
             return _context.News.Any(e => e.NewsId == id);
         }
-        //[HttpPost]
+
         //[HttpPost]
         //public async Task<IActionResult> UploadImage(IFormFile upload)
         //{

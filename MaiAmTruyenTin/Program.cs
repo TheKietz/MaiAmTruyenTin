@@ -9,7 +9,7 @@ builder.Services.AddScoped<FileUploadHelper>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<KrbltdhcMaiamtruyentinContext>(options =>
+builder.Services.AddDbContext<MaiamtruyentinContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();

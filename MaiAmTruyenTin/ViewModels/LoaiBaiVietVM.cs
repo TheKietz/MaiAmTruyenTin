@@ -1,4 +1,5 @@
-﻿namespace MaiAmTruyenTin.ViewModels
+﻿using MaiAmTruyenTin.Models;
+namespace MaiAmTruyenTin.ViewModels
 {
     public class LoaiBaiVietVM
     {
