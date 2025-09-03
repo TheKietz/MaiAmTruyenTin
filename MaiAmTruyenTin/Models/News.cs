@@ -37,15 +37,23 @@ namespace MaiAmTruyenTin.Models
 
         [DisplayName("Lượt xem")]
         public int ViewCount { get; set; } = 0;
-
+        [DisplayName("Thời gian tạo")]
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
+        [DisplayName("Người tạo")]
         public int? CreatedBy { get; set; }
+        [DisplayName("Thời gian cập nhật")]
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
+        [DisplayName("Người cập nhật")]
         public int? UpdatedBy { get; set; }
+        [DisplayName("Xóa")]
         public bool IsDeleted { get; set; } = false;
+        [DisplayName("Người xóa")]
         public int? DeletedBy { get; set; }
+        [DisplayName("Ngày xóa")]
         public DateTime? DeletedAt { get; set; }
+        [DisplayName("Người duyệt")]
         public int? ApprovedBy { get; set; }
+        [DisplayName("Ngày duyệt")]
         public DateTime? ApprovedAt { get; set; }
 
         // Navigation

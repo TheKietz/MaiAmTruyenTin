@@ -1,7 +1,18 @@
-﻿@model IEnumerable<MaiAmTruyenTin.Areas.Admin.ViewModels.TinTucVM>
+﻿@using System.ComponentModel.DataAnnotations
+@using MaiAmTruyenTin.Enums
+@model IEnumerable<MaiAmTruyenTin.Models.News>
+@functions{
+    public string GetEnumDisplayName(Enum value)
+    {
+        var field = value.GetType().GetField(value.ToString());
+        var attr = field.GetCustomAttributes(typeof(DisplayAttribute), false)
+                        .FirstOrDefault() as DisplayAttribute;
+        return attr != null ? attr.Name : value.ToString();
+    }
+}
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -40,12 +51,12 @@
                                     @Html.DisplayNameFor(model => model.Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CategoryName)
+                                    @Html.DisplayNameFor(model => model.Category.Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.AuthorName)
+                                    @Html.DisplayNameFor(model => model.Author.FullName)
                                 </th>
-                                
+
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
@@ -62,13 +73,13 @@
                                             <img src="@item.CoverImage" alt="Cover Image" style="max-width: 100px; max-height: 100px;" />
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Status)
+                                        @GetEnumDisplayName(item.Status)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CategoryName)
+                                        @Html.DisplayFor(modelItem => item.Category.Name)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.AuthorName)
+                                        @Html.DisplayFor(modelItem => item.Author.FullName)
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-sm btn-primary">Sửa</a> |
