@@ -27,7 +27,7 @@
                                 <span class="cke_notification_message">Click duyệt máy chủ để tìm ảnh, nếu chưa có thì thực hiện theo các bước sau:</span>
                                 <br />
                                 <span> Tải lên -> chọn tệp -> tải lên máy chủ -> thông tin của ảnh -> duyệt máy chủ -> ok</span>
-                                <textarea id="Content" name="Content" class="form-control"></textarea>
+                                <textarea asp-for="Content" id="Content" name="Content" class="form-control"></textarea>
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
 
@@ -84,30 +84,28 @@
     </div>
 </div>
 
-@section scripts {
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
-    <script src="~/Content/ckeditor/config.js"></script>
-    <script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckeditor/config.js"></script>
+<script>
 
-        document.addEventListener("DOMContentLoaded", function() {
-            CKEDITOR.replace('Content', {
-                height:300,
-                width:'100%',
-                filebrowserBrowseUrl: '/Admin/CkEditor/UploadExplorer',
-                filebrowserUploadUrl: '/Admin/CkEditor/UploadImage',
-                extraAllowedContent: 'span'
-            });
+    document.addEventListener("DOMContentLoaded", function() {
+        CKEDITOR.replace('Content', {
+            height:300,
+            width:'100%',
+            filebrowserBrowseUrl: '/Admin/CkEditor/UploadExplorer',
+            filebrowserUploadUrl: '/Admin/CkEditor/UploadImage',
+            extraAllowedContent: 'span'
         });
+    });
 
-        // Cập nhật nội dung từ CKEditor vào textarea trước khi submit form
-        $('form').on('submit', function () {
-            for (var instance in CKEDITOR.instances) {
-                CKEDITOR.instances[instance].updateElement();
-            }
-        });
+    // Cập nhật nội dung từ CKEditor vào textarea trước khi submit form
+    $('form').on('submit', function () {
+        for (var instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
+        }
+    });
 
-    </script>
-}
+</script>
 
 
 

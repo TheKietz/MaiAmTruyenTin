@@ -14,13 +14,11 @@
         }
 
         .file-list {
-            display: flex;
-            flex-wrap: wrap;
         }
 
         .file-item {
             margin: 10px;
-            text-align: center;
+            text-align: left;
         }
 
             .file-item img {
@@ -37,9 +35,12 @@
         @foreach (var file in ViewBag.fileInfo)
         {
             <div class="file-item">
-                <img src="@Url.Content("~/uploads/" + file.Name)" title="@file.Name" alt="thumb" />
-                <br />
-                <div>@file.Name</div>
+                <div class="row">
+                    <img src="@Url.Content("~/uploads/" + file.Name)" title="@file.Name" alt="thumb" />
+                   
+                    <div>@file.Name</div>
+                    <hr />
+                </div>
             </div>
         }
     </div>
