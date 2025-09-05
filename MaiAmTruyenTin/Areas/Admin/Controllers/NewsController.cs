@@ -82,8 +82,6 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         }
 
         // POST: Admin/News/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("NewsId,Title,Content,CoverImage,CategoryId,AuthorId,Status,ViewCount,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt,ApprovedBy,ApprovedAt")] News news, IFormFile? CoverImageFile)
@@ -92,9 +90,20 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                // Lấy dữ liệu cũ từ DB
+                var existingNews = await _context.News.AsNoTracking()
+                                        .FirstOrDefaultAsync(n => n.NewsId == id);
+                if (existingNews == null) return NotFound();
+
                 if (CoverImageFile != null)
                 {
+                    // Upload ảnh mới nếu có file
                     news.CoverImage = await _fileHelper.UploadFile(CoverImageFile);
+                }
+                else
+                {
+                    // Giữ nguyên ảnh cũ
+                    news.CoverImage = existingNews.CoverImage;
                 }
 
                 try
@@ -114,6 +123,7 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", news.CategoryId);
             return View(news);
         }
+
 
 
 
