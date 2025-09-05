@@ -34,7 +34,7 @@
                                         @(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "")
                                         | @item.Category?.Name
                                     </div>
-                                    <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                    <a asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                         @item.Title
                                     </a>
                                 </div>
@@ -96,7 +96,7 @@
                                         | @item.Category?.Name
                                     </small>
                                     <p class="post-title" style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                        <a asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                             @item.Title
                                         </a>
                                     </p>
