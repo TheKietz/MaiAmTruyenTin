@@ -1,0 +1,114 @@
+﻿@model MaiAmTruyenTin.Models.News
+
+@{
+    ViewData["Title"] = "Đăng tin";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Đăng tin mới</h5>
+                        <hr>
+                        <form asp-action="Create" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="mb-3">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Content" class="control-label"></label>
+                                <br />
+                                <span class="text-danger">*Hướng dẫn chọn ảnh: </span>
+                                <br />
+                                <span class="cke_notification_message">Click duyệt máy chủ để tìm ảnh, nếu chưa có thì thực hiện theo các bước sau:</span>
+                                <br />
+                                <span> Tải lên -> chọn tệp -> tải lên máy chủ -> thông tin của ảnh -> duyệt máy chủ -> ok</span>
+                                <textarea id="Content" name="Content" class="form-control"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="CoverImage" class="control-label"></label>
+                                <input type="file" name="CoverImageFile" class="form-control" />
+                                <span asp-validation-for="CoverImage" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="CategoryId" class="control-label"></label>
+                                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AuthorId" class="control-label"></label>
+                                <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+                            </div>
+                           
+                            @* <div class="mb-3">
+                                <label asp-for="CreatedBy" class="control-label"></label>
+                                <select asp-for="CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="UpdatedBy" class="control-label"></label>
+                                <select asp-for="UpdatedBy" class="form-control" asp-items="ViewBag.UpdatedBy"></select>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                                </label>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="DeletedBy" class="control-label"></label>
+                                <select asp-for="DeletedBy" class="form-control" asp-items="ViewBag.DeletedBy"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="ApprovedBy" class="control-label"></label>
+                                <select asp-for="ApprovedBy" class="form-control" asp-items="ViewBag.ApprovedBy"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="ApprovedAt" class="control-label"></label>
+                                <input asp-for="ApprovedAt" class="form-control" />
+                                <span asp-validation-for="ApprovedAt" class="text-danger"></span>
+                            </div> *@
+                            <div class="mb-3">
+                                <input type="submit" value="Đăng bài" class="btn btn-primary" />
+                                <a asp-action="Index" class="btn btn-sm btn-info">Quay lại</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay toggle-menu"></div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/config.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('Content', {
+                height:300,
+                width:'100%',
+                filebrowserBrowseUrl: '/Admin/CkEditor/UploadExplorer',
+                filebrowserUploadUrl: '/Admin/CkEditor/UploadImage',
+                extraAllowedContent: 'span'
+            });
+        });
+
+        // Cập nhật nội dung từ CKEditor vào textarea trước khi submit form
+        $('form').on('submit', function () {
+            for (var instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+        });
+
+    </script>
+}
+
+
+
+

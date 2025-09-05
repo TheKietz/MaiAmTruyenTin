@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>File Explorer</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 10px;
+        }
+
+        .file-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .file-item {
+            margin: 10px;
+            text-align: center;
+        }
+
+            .file-item img {
+                max-width: 120px;
+                max-height: 120px;
+                border: 1px solid #ccc;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <h3>Chọn ảnh</h3>
+    <div id="browseFile" class="file-list">
+        @foreach (var file in ViewBag.fileInfo)
+        {
+            <div class="file-item">
+                <img src="@Url.Content("~/uploads/" + file.Name)" title="@file.Name" alt="thumb" />
+                <br />
+                <div>@file.Name</div>
+            </div>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            var funcNum = '@Context.Request.Query["CKEditorFuncNum"]';
+            $("#browseFile img").click(function () {
+                var fileUrl = '/uploads/' + $(this).attr('title');
+                window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
+                window.close();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using MaiAmTruyenTin.Enums
+@model IEnumerable<MaiAmTruyenTin.Models.News>
+@functions{
+    public string GetEnumDisplayName(Enum value)
+    {
+        var field = value.GetType().GetField(value.ToString());
+        var attr = field.GetCustomAttributes(typeof(DisplayAttribute), false)
+                        .FirstOrDefault() as DisplayAttribute;
+        return attr != null ? attr.Name : value.ToString();
+    }
+}
+
+@{
+    ViewData["Title"] = "Danh sách tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <h2>Danh sách tin tức</h2>
+        <hr />
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <form action="${pageContext.request.contextPath}/admin/employers" method="get">
+                            <div class="input-group">
+                                <input type="text" name="keyword" class="form-control" placeholder="Nhập tiêu đề" value="" />
+                                <input type="hidden" name="size" value="${pageSize}" />
+                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a asp-action="Create" class="btn btn-success">Đăng tin</a>
+                    </div>
+                </div>
+                <div class="table-responsive" style="overflow-x: auto;">
+                    <table class="table table-bordered" style="min-width: 1200px;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CoverImage)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Category.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Author.FullName)
+                                </th>
+
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+
+                                    <td>
+                                        <a href="@item.CoverImage" target="_blank">
+                                            <img src="@item.CoverImage" alt="Cover Image" style="max-width: 100px; max-height: 100px;" />
+                                    </td>
+                                    <td>
+                                        @GetEnumDisplayName(item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Author.FullName)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-sm btn-primary">Sửa</a> |
+                                        <a href="/tintuc/details/@item.NewsId" class="btn btn-sm btn-info"
+                                           target="_blank">Xem</a> |
+                                        <form asp-action="Delete" asp-route-id="@item.NewsId" method="post" style="display:inline;"
+                                              onsubmit="return confirm('Bạn có chắc muốn xoá tin: @item.Title ?');">
+                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="overlay toggle-menu"></div>
+    </div>
+</div>
