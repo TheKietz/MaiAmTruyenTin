@@ -84,28 +84,30 @@
     </div>
 </div>
 
-<script src="~/Content/ckeditor/ckeditor.js"></script>
-<script src="~/Content/ckeditor/config.js"></script>
-<script>
+@section scripts {
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/config.js"></script>
+    <script>
 
-    document.addEventListener("DOMContentLoaded", function() {
-        CKEDITOR.replace('Content', {
-            height:300,
-            width:'100%',
-            filebrowserBrowseUrl: '/Admin/CkEditor/UploadExplorer',
-            filebrowserUploadUrl: '/Admin/CkEditor/UploadImage',
-            extraAllowedContent: 'span'
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('Content', {
+                height:300,
+                width:'100%',
+                filebrowserBrowseUrl: '/Admin/CkEditor/UploadExplorer',
+                filebrowserUploadUrl: '/Admin/CkEditor/UploadImage',
+                extraAllowedContent: 'span'
+            });
         });
-    });
 
-    // Cập nhật nội dung từ CKEditor vào textarea trước khi submit form
-    $('form').on('submit', function () {
-        for (var instance in CKEDITOR.instances) {
-            CKEDITOR.instances[instance].updateElement();
-        }
-    });
+        // Cập nhật nội dung từ CKEditor vào textarea trước khi submit form
+        $('form').on('submit', function () {
+            for (var instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+        });
 
-</script>
+    </script>
+}
 
 
 

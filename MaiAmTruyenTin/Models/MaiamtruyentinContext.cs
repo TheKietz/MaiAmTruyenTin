@@ -41,10 +41,13 @@ public partial class MaiamtruyentinContext : DbContext
     public virtual DbSet<UserToken> UserTokens { get; set; }
 
     public virtual DbSet<Volunteer> Volunteers { get; set; }
+    public virtual DbSet<Event> Events { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
        
         base.OnModelCreating(modelBuilder);
+
     }
 }

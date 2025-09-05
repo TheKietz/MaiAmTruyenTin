@@ -4,6 +4,7 @@ using MaiAmTruyenTin.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaiAmTruyenTin.Migrations
 {
     [DbContext(typeof(MaiamtruyentinContext))]
-    partial class MaiamtruyentinContextModelSnapshot : ModelSnapshot
+    [Migration("20250905101024_CreateEventsTable")]
+    partial class CreateEventsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace MaiAmTruyenTin.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Activity", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Activity", b =>
                 {
                     b.Property<int>("ActivityId")
                         .ValueGeneratedOnAdd()
@@ -74,7 +77,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("ActivityVolunteer", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.ActivityVolunteer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -103,7 +106,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("ActivityVolunteers");
                 });
 
-            modelBuilder.Entity("Category", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -125,7 +128,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Donation", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Donation", b =>
                 {
                     b.Property<int>("DonationId")
                         .ValueGeneratedOnAdd()
@@ -156,7 +159,41 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Donations");
                 });
 
-            modelBuilder.Entity("Founder", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Event", b =>
+                {
+                    b.Property<int>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("EventId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Founder", b =>
                 {
                     b.Property<int>("FounderId")
                         .ValueGeneratedOnAdd()
@@ -217,67 +254,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Founders");
                 });
 
-            modelBuilder.Entity("MaiAmTruyenTin.Data.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("FoundedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("Role")
-                        .HasMaxLength(20)
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("News", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.News", b =>
                 {
                     b.Property<int>("NewsId")
                         .ValueGeneratedOnAdd()
@@ -349,7 +326,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("NewsImage", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.NewsImage", b =>
                 {
                     b.Property<int>("ImageId")
                         .ValueGeneratedOnAdd()
@@ -376,7 +353,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("NewsImages");
                 });
 
-            modelBuilder.Entity("Sponsor", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Sponsor", b =>
                 {
                     b.Property<int>("SponsorId")
                         .ValueGeneratedOnAdd()
@@ -446,7 +423,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Sponsors");
                 });
 
-            modelBuilder.Entity("SponsorDonation", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.SponsorDonation", b =>
                 {
                     b.Property<int>("DonationId")
                         .ValueGeneratedOnAdd()
@@ -477,7 +454,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("SponsorDonations");
                 });
 
-            modelBuilder.Entity("Student", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
@@ -537,7 +514,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("UserToken", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -626,7 +603,7 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("Volunteer", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Volunteer", b =>
                 {
                     b.Property<int>("VolunteerId")
                         .ValueGeneratedOnAdd()
@@ -683,15 +660,15 @@ namespace MaiAmTruyenTin.Migrations
                     b.ToTable("Volunteers");
                 });
 
-            modelBuilder.Entity("ActivityVolunteer", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.ActivityVolunteer", b =>
                 {
-                    b.HasOne("Activity", "Activity")
+                    b.HasOne("MaiAmTruyenTin.Models.Activity", "Activity")
                         .WithMany("ActivityVolunteers")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Volunteer", "Volunteer")
+                    b.HasOne("MaiAmTruyenTin.Models.Volunteer", "Volunteer")
                         .WithMany("ActivityVolunteers")
                         .HasForeignKey("VolunteerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -702,22 +679,33 @@ namespace MaiAmTruyenTin.Migrations
                     b.Navigation("Volunteer");
                 });
 
-            modelBuilder.Entity("Donation", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Donation", b =>
                 {
-                    b.HasOne("MaiAmTruyenTin.Data.User", "User")
+                    b.HasOne("MaiAmTruyenTin.Models.User", "User")
                         .WithMany("Donations")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("News", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Event", b =>
                 {
-                    b.HasOne("MaiAmTruyenTin.Data.User", "Author")
+                    b.HasOne("MaiAmTruyenTin.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("MaiAmTruyenTin.Models.News", b =>
+                {
+                    b.HasOne("MaiAmTruyenTin.Models.User", "Author")
                         .WithMany("News")
                         .HasForeignKey("AuthorId");
 
-                    b.HasOne("Category", "Category")
+                    b.HasOne("MaiAmTruyenTin.Models.Category", "Category")
                         .WithMany("News")
                         .HasForeignKey("CategoryId");
 
@@ -726,9 +714,9 @@ namespace MaiAmTruyenTin.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("NewsImage", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.NewsImage", b =>
                 {
-                    b.HasOne("News", "News")
+                    b.HasOne("MaiAmTruyenTin.Models.News", "News")
                         .WithMany("NewsImages")
                         .HasForeignKey("NewsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -737,9 +725,9 @@ namespace MaiAmTruyenTin.Migrations
                     b.Navigation("News");
                 });
 
-            modelBuilder.Entity("SponsorDonation", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.SponsorDonation", b =>
                 {
-                    b.HasOne("Sponsor", "Sponsor")
+                    b.HasOne("MaiAmTruyenTin.Models.Sponsor", "Sponsor")
                         .WithMany("SponsorDonations")
                         .HasForeignKey("SponsorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -748,9 +736,9 @@ namespace MaiAmTruyenTin.Migrations
                     b.Navigation("Sponsor");
                 });
 
-            modelBuilder.Entity("UserToken", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.UserToken", b =>
                 {
-                    b.HasOne("MaiAmTruyenTin.Data.User", "User")
+                    b.HasOne("MaiAmTruyenTin.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -759,34 +747,34 @@ namespace MaiAmTruyenTin.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Activity", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Activity", b =>
                 {
                     b.Navigation("ActivityVolunteers");
                 });
 
-            modelBuilder.Entity("Category", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Category", b =>
                 {
                     b.Navigation("News");
                 });
 
-            modelBuilder.Entity("MaiAmTruyenTin.Data.User", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.News", b =>
+                {
+                    b.Navigation("NewsImages");
+                });
+
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Sponsor", b =>
+                {
+                    b.Navigation("SponsorDonations");
+                });
+
+            modelBuilder.Entity("MaiAmTruyenTin.Models.User", b =>
                 {
                     b.Navigation("Donations");
 
                     b.Navigation("News");
                 });
 
-            modelBuilder.Entity("News", b =>
-                {
-                    b.Navigation("NewsImages");
-                });
-
-            modelBuilder.Entity("Sponsor", b =>
-                {
-                    b.Navigation("SponsorDonations");
-                });
-
-            modelBuilder.Entity("Volunteer", b =>
+            modelBuilder.Entity("MaiAmTruyenTin.Models.Volunteer", b =>
                 {
                     b.Navigation("ActivityVolunteers");
                 });

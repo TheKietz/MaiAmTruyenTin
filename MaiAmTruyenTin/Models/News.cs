@@ -55,6 +55,10 @@ namespace MaiAmTruyenTin.Models
         public int? ApprovedBy { get; set; }
         [DisplayName("Ngày duyệt")]
         public DateTime? ApprovedAt { get; set; }
+        
+        [DisplayName("Mô tả ngắn")]
+        [StringLength(500)]
+        public string? Summary { get; set; }
 
         // Navigation
         public virtual User? Author { get; set; }
