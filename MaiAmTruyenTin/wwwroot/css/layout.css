@@ -1,0 +1,142 @@
+/* Navbar base */
+.my-navbar {
+    padding: 0 !important;
+    /* bỏ padding mặc định */
+    min-height: 84px;
+    /* độ dày header */
+}
+
+/* Căn giữa tất cả theo trục dọc */
+.my-navbar .container,
+.my-navbar .navbar-collapse,
+.my-navbar .navbar-nav {
+    align-items: center;
+}
+
+/* Logo full chiều cao navbar */
+.my-navbar .navbar-brand {
+    padding: 0 !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.my-navbar .navbar-logo {
+    max-height: 84px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Menu */
+.my-navbar .nav-link {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    /* không xuống dòng */
+    color: #333;
+    transition: color .2s ease-in-out;
+}
+
+.my-navbar .nav-link:hover {
+    color: #0d6efd;
+}
+
+/* ===== Footer fix ===== */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+    /* footer luôn dính đáy */
+}
+
+/* FOOTER styles */
+.site-footer {
+    background: linear-gradient(180deg, #e9fbff 0%, #d7f6ff 100%);
+    /* nhẹ nhàng xanh sáng */
+    color: #04263d;
+}
+
+/* section titles already enlarged earlier; small helper */
+.site-footer .footer-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #044a7c;
+    margin-bottom: .8rem;
+}
+
+/* links */
+.site-footer .footer-link {
+    color: #0b4f7a;
+    text-decoration: none;
+}
+
+.site-footer .footer-link:hover {
+    text-decoration: underline;
+    color: #083a60;
+}
+
+/* small text */
+.site-footer .small {
+    color: #0b3b55;
+}
+
+/* bottom bar */
+.site-footer .footer-bottom {
+    background: transparent;
+    border-top: 1px solid rgba(4, 74, 124, 0.06);
+}
+
+/* social icons */
+.site-footer .social-icon svg {
+    display: block;
+}
+
+.site-footer .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.site-footer .social-icon:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(7, 50, 97, 0.12);
+}
+
+/* subscribe input */
+#footerSubscribeForm input.form-control {
+    border-radius: 6px;
+}
+
+#footerSubscribeBtn {
+    border-radius: 6px;
+}
+
+/* responsive tweaks */
+@media (max-width: 767px) {
+    .site-footer {
+        text-align: center;
+    }
+
+    .site-footer .footer-link {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .site-footer .container .row>div {
+        padding-left: .6rem;
+        padding-right: .6rem;
+    }
+}
