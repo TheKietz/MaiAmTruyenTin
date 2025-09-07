@@ -1,0 +1,48 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+*.swp
+*.swo
+
+# Rider / JetBrains
+.idea/
+
+# MacOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# DotNet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Publish outputs
+wwwroot/lib/
+wwwroot/dist/
+wwwroot/node_modules/
+node_modules/
+
+# Environment files
+*.env
+appsettings.Development.json
+
+# Others
+*.dbmdl
+*.bak
+*.backup
+*.mdf
+*.ldf
