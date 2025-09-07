@@ -1,10 +1,13 @@
 ﻿using MaiAmTruyenTin.Data;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace MaiAmTruyenTin.Models
 {
     [Table("Volunteers")]
+    [Index(nameof(Email), IsUnique = true)]
+    [Index(nameof(Phone), IsUnique = true)]
     public class Volunteer
     {
         [Key]
