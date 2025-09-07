@@ -1,0 +1,130 @@
+﻿@model IEnumerable<MaiAmTruyenTin.Models.Volunteer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <h2>Danh sách tin tức</h2>
+        <hr />
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <form action="${pageContext.request.contextPath}/admin/employers" method="get">
+                            <div class="input-group">
+                                <input type="text" name="keyword" class="form-control" placeholder="Nhập tiêu đề" value="" />
+                                <input type="hidden" name="size" value="${pageSize}" />
+                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a asp-action="Create" class="btn btn-success">Đăng tin</a>
+                    </div>
+                </div>
+                <div class="table-responsive" style="overflow-x: auto;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.JoinDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Skills)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Notes)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreatedAt)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreatedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsDeleted)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DeletedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DeletedAt)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.JoinDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Skills)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Notes)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UpdatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DeletedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DeletedAt)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.VolunteerId">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.VolunteerId">Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.VolunteerId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="overlay toggle-menu"></div>
+    </div>
+</div>

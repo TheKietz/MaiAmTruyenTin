@@ -1,62 +1,95 @@
-﻿@{
+﻿@model MaiAmTruyenTin.ViewModels.LichSuKienVM
+@{
     ViewData["Title"] = "Lịch sự kiện";
 }
 
 <div class="container mt-4">
     <div class="text-center mb-4">
-        <div class="page-title">
-            <h2 class="fw-bold mb-0">@ViewData["Title"]</h2>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <select class="form-select">
-                <option value="">-- Chọn danh mục sự kiện --</option>
-                <option value="1">Học tập</option>
-                <option value="2">Thiện nguyện</option>
-                <option value="3">Văn nghệ</option>
-            </select>
-        </div>
-        <div class="col-md-6 text-end">
-            <input type="text" class="form-control d-inline-block w-75" placeholder="Tìm kiếm sự kiện...">
-            <button class="btn btn-primary">Tìm</button>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-8">
-            <div class="card p-3 mb-3">
-                <h5>Danh sách sự kiện</h5>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <strong>Sự kiện A</strong> - 20/08/2025 <br />
-                        Địa điểm: Hội trường A
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Sự kiện B</strong> - 25/08/2025 <br />
-                        Địa điểm: Nhà văn hóa
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Sự kiện C</strong> - 30/08/2025 <br />
-                        Địa điểm: Online Zoom
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Lịch -->
-        <div class="col-md-4">
-            <div class="card p-3">
-                <h5>Lịch</h5>
-                <div id="calendar"></div>
-            </div>
+        <div class="page-title bg-white p-3 rounded shadow-sm">
+            <h2 class="fw-bold mb-0 title-decor">@ViewData["Title"]</h2>
         </div>
     </div>
 </div>
 
+<style>
+    .title-decor {
+        display: inline-block;
+        position: relative;
+        padding-bottom: 8px;
+    }
 
+        .title-decor::after {
+            content: "";
+            display: block;
+            width: 80px;
+            border-bottom: 3px solid #007bff;
+            margin: 6px auto 0;
+        }
+</style>
+
+
+<!-- Form tìm kiếm -->
+<div class="card p-4 mb-4 shadow-sm">
+    <form method="get" asp-controller="LichSuKien" asp-action="Index" class="row g-3">
+        <div class="col-md-6">
+            <select name="categoryId" class="form-select" onchange="this.form.submit()">
+                <option value="">-- Chọn danh mục --</option>
+                @foreach (var cat in Model.Categories)
+                {
+                    var isSelected = Model.SelectedCategory == cat.Key.ToString();
+                    <option value="@cat.Key" selected="@(isSelected ? "selected" : null)">
+                        @cat.Value
+                    </option>
+                }
+            </select>
+
+        </div>
+
+        <div class="col-md-6 text-end">
+            <input type="text" name="keyword" value="@Model.Keyword"
+                   class="form-control d-inline-block w-75"
+                   placeholder="Tìm kiếm sự kiện..." />
+            <button type="submit" class="btn btn-primary">Tìm</button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <!-- Danh sách sự kiện -->
+    <div class="col-md-8">
+        <div class="card p-3 mb-3 shadow-sm">
+            <h5 class="fw-bold">Danh sách sự kiện</h5>
+            @if (Model.Events.Any())
+            {
+                <ul class="list-group">
+                    @foreach (var ev in Model.Events)
+                    {
+                        <li class="list-group-item">
+                            <strong>@ev.Title</strong> - @ev.StartDate.ToString("dd/MM/yyyy") <br />
+                            <span class="text-muted">Danh mục: @(Model.Categories.ContainsKey(ev.CategoryId) ? Model.Categories[ev.CategoryId] : "Không rõ")</span><br />
+                            Địa điểm: @ev.Location
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-muted">Không có sự kiện nào.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Lịch -->
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h5 class="fw-bold">Lịch</h5>
+            <div id="calendar" style="min-height: 450px;"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- FullCalendar -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
@@ -66,14 +99,13 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'vi',
-            events: [
-                { title: 'Sự kiện A', start: '2025-08-20' },
-                { title: 'Sự kiện B', start: '2025-08-25' },
-                { title: 'Sự kiện C', start: '2025-08-30' }
-            ],
+            height: 450,
+            events: '/LichSuKien/GetEvents',
             eventClick: function (info) {
                 alert('Chi tiết: ' + info.event.title + ' - ' + info.event.start.toLocaleDateString());
-            }
+            },
+            eventColor: '#378006',
+            eventTextColor: '#fff'
         });
         calendar.render();
     });

@@ -1,3 +1,359 @@
-﻿@{
+﻿@model MaiAmTruyenTin.ViewModels.GioiThieuVM;
+@{
     ViewData["Title"] = "Giới thiệu trung tâm";
 }
+
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <environment exclude="Development">
+        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+    <style>
+       
+        /* Block wrapper chung */
+        .cover-section {
+            position: relative;
+            background-image: url('/template/images/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #fafafa;
+            padding: 80px 20px;
+            text-align: center;
+            /* color: #222; */
+        }
+
+            .cover-section p{
+                text-align: justify;
+            }
+
+        .vision-underline-about {
+            width: 60px; 
+            height: 4px; 
+            background-color: #0077cc; 
+            margin-top: 8px; 
+            margin-bottom: 24px; 
+        }
+        .cover-section-slogan {
+            position: relative;
+            background-image: url('/template/images/desktop_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: whitesmoke;
+            padding: 80px 20px;
+            text-align: center;
+            color: #222;
+        }
+        /* Text styles */
+        .hero-title {
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .body-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary-lg {
+            background-color: #f04d4d;
+            color: #fff;
+        }
+
+            .btn-primary-lg:hover {
+                background-color: #d63c3c;
+            }
+        /*Tầm nhìn*/
+        
+        .vision-section {
+            padding: 60px 0;
+           
+        }
+
+        .vision-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .vision-underline {
+            width: 60px;
+            height: 4px;
+            background-color: #0077cc;
+            margin: 0 auto 40px auto;
+        }
+
+        .vision-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .vision-item {
+            margin-bottom: 30px;
+        }
+
+            .vision-item h5 {
+                font-weight: 600;
+            }
+
+            .vision-item p {
+                text-align: justify;
+            }
+        /* nhà thành lập */
+        .foundation {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .foundation-box {
+            background: whitesmoke;            
+            min-height: 300px; 
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+
+        .bio-container {
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .bio-container p {
+                line-height: 1.8;
+                margin-bottom: 0;
+            }
+
+        .bio-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .bio-title {
+            font-style: italic;
+            margin-bottom: 12px;
+            display: block;
+        }
+        /*sponsor section*/
+        .sponsor-section {
+            background-color: white; 
+            padding: 30px 20px; 
+            text-align: center;
+          
+        }
+        
+        .sponsor-carousel-container {
+            max-width: 1200px;
+            margin: 0 auto; 
+            overflow: hidden;
+        }
+
+        .sponsor-carousel {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sponsor-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+            .sponsor-track img {
+                width: 90px;
+                height: 70px;
+                margin: 0 10px;
+                object-fit: contain;
+                flex-shrink: 0;
+            }
+
+        /* Carousel nhà tài trợ */
+        .sponsor-carousel-container {
+            background-color: #f9f9f9;
+            padding: 50px 0;
+            overflow: hidden;
+        }
+
+        .sponsor-carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sponsor-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+            .sponsor-track img {
+                width: 90px;
+                height: 70px;
+                margin: 0 10px;
+                flex-shrink: 0;
+            }
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <div id="cover-block" class="block-wrapper cover-section">
+            <section class="w-section w-section--xxl">
+                <div class="row">
+                    <div class="col-md-8" style="padding:120px">
+                        <div class="text-xl-end">
+                            <header class="w-section__header text-center">
+                                <h2 class="hero-title">MÁI ẤM TRUYỀN TIN</h2>
+                                <p class="subtitle">We are influencing our community...</p>
+                                <p class="body-text" style="text-align:justify"><strong>Come and join us every Sunday at 10:30 am.</strong></p>
+                            </header>
+                            <footer class="w-section__footer text-center">
+                                <a href="/#contacts" class="btn btn-primary-lg">QUYÊN GÓP</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="cover-block" class="block-wrapper" style="background-color:whitesmoke">
+            <section class="w-section w-section--xxl">
+                <div class="row">
+                    <div class="col-md-6" style="padding:50px">
+                        <h2 class="hero-title">Về chúng tôi </h2>
+                        <div class="vision-underline-about"></div>
+                        <p class="text-body" style="text-align:justify">Mái Ấm Truyền Tin là một trung tâm cộng đồng phi lợi nhuận, được thành lập với sứ mệnh mang lại sự hỗ trợ và phát triển cho những người có hoàn cảnh khó khăn trong xã hội. Chúng tôi tin rằng mỗi người đều xứng đáng có cơ hội để phát triển và sống một cuộc sống đầy đủ, hạnh phúc.</p>
+                    </div>
+                    <div class="col-md-6" style="padding:50px">
+                        <img src="~/template/images/about.webp" alt="About Us" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="cover-block" class="block-wrapper cover-section-slogan">
+            <section class="w-section w-section--xxl">
+                <div class="w-section__inner">
+                    <h2 class="hero-title">MÁI ẤM TRUYỀN TIN</h2>
+                    <p class="subtitle">We are influencing our community...</p>
+                    <p class="body-text"><strong>Come and join us every Sunday at 10:30 am.</strong></p>
+                </div>
+            </section>
+        </div>
+        <div class="container vision-section" style="background-color:whitesmoke">
+            <h2 class="vision-title">Tầm nhìn của chúng tôi</h2>
+            <div class="vision-underline"></div>
+
+            <div class="row align-items-center">
+                <!-- Ảnh bên trái -->
+                <div class="col-lg-6 vision-image mb-3 mb-lg-0">
+                    <img src="~/template/images/founder1.webp" alt="Our Vision Image">
+                </div>
+
+                <!-- Nội dung bên phải -->
+                <div class="col-lg-6">
+                    <div class="vision-item">
+                        <h5>UPWARD – It’s All about Jesus</h5>
+                        <p>We are a community which understands God's redemptive mission to humanity. We are those who believe that worshiping God is the life's mission and part of history. Those who believe in the full sufficiency of Scripture to speak into all walks of life.</p>
+                    </div>
+                    <div class="vision-item">
+                        <h5>INWARD – We Are Family</h5>
+                        <p>We are a responsible community which respects, supports, and forgives each other. Our church is not satisfied with indifferent faith and encourages one another to strive towards God in complete surrender.</p>
+                    </div>
+                    <div class="vision-item">
+                        <h5>OUTWARD – Life on Mission</h5>
+                        <p>We are a community that sees all humanity created in God's image and want to see their worship in spirit and truth. A community that is able to spread the love of God, His mercy, His compassion for the lost and hurt people in Denver and across the world!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div id="cover-block" class="block-wrapper" style="background-color:white">
+            <h2 class="vision-title">Nhà sáng lập</h2>
+            <div class="vision-underline"></div>
+            <section class="foundation">
+                @foreach(var item in Model.AllFounder)
+                {
+                    <div class="foundation-box">
+                        <div class="row">
+                            <div class="col-md-3" style="padding:20px">
+                                <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                            </div>
+                            <div class="col-md-9 bio-container">
+                                <p style="text-align:justify">
+                                    <span class="bio-name">@item.FullName</span>
+                                    <span class="bio-title">@item.Role</span>
+                                    @item.Notes
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }             
+
+            </section>
+        </div>
+        
+        <section class="sponsor-section">
+            <div class="sponsor-carousel-container">
+                <h2 class="hero-title text-center">Các nhà tài trợ</h2>
+                <div class="vision-underline"></div>
+                <div class="sponsor-carousel">
+                    <div class="sponsor-track">
+                        @foreach(var item in Model.AllSponsor)
+                        {
+                            <img src="~/template/images/sponsor1.png" alt="Sponsor 1" />
+                        }                     
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    <script>
+        const track = document.querySelector('.sponsor-track');
+        const sponsors = document.querySelectorAll('.sponsor-track img');
+        const visibleCount = 10;
+        const scrollInterval = 1000;
+
+        let index = 0;
+        const sponsorWidth = sponsors[0].offsetWidth + 20;
+
+        setInterval(() => {
+            if (sponsors.length <= visibleCount) return;
+
+            index++;
+            if (index > sponsors.length - visibleCount) {
+                index = 0;
+            }
+
+            track.style.transform = `translateX(-${index * sponsorWidth}px)`;
+        }, scrollInterval);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿@model MaiAmTruyenTin.ViewModels.NewsDetailVM
+<html lang="vi">
+<head>
+    <style>
+        .news-section {
+            background: linear-gradient(135deg, #cce7ff, #e6f2ff);
+            padding: 40px 20px;
+        }
+
+        .news-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 40px 0 20px 0;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+            .news-card img {
+                height: 150px;
+                object-fit: cover;
+            }
+
+        .news-card-body {
+            padding: 8px;
+        }
+
+        .news-card-date {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .news-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+<div class="news-detail">
+    <h2>@Model.News.Title</h2>
+    <p class="text-muted">
+        Đăng ngày: @Model.News.CreatedAt?.ToString("dd/MM/yyyy")
+        | Chuyên mục: @Model.News.Category?.Name
+    </p>
+    <div class="content">
+        @Html.Raw(Model.News.Content)  
+    </div>
+</div>
+
+<hr />
+
+    <section class="news-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Tin liên quan</h2>
+            <div class="row g-3">
+                @foreach (var item in Model.RelatedNews)
+                {
+                    <div class="col-md-4">
+                        <div class="news-card" style="width:300px; height: 250px; display: flex; flex-direction: column;">
+                            <img src="~/template/images/news1.jpg" alt="Ảnh bài viết" style="object-fit: cover;">
+                            <div class="news-card-body" style="flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                                <div class="news-card-date" style="font-size: 13px; color: #888; margin-bottom: 8px;">@(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "") | @item.Category?.Name</div>
+                                <a href="@Url.Action("Details", "TinTuc", new { id = item.NewsId })" style="text-decoration: none; color: black; font-weight: bold; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                    @item.Title
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</body>
+</html>

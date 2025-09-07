@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MaiAmTruyenTin.ViewModels.LoaiBaiVietVM>
+
+<!-- Danh mục -->
+<h5>DANH MỤC BÀI VIẾT</h5>
+<ul class="list-unstyled">
+    @foreach (var item in Model)
+    {
+        <li>▶ 
+            <a href="#new/@item.Name" 
+            style="text-decoration: none; color: dimgray; flex-grow: 1;" 
+            onmouseover="this.style.color='blue'"
+            onmouseout="this.style.color='dimgray'">@(item.Name)</a>
+            <span class="text-muted float-end">28</span>
+        </li>
+    }
+</ul>
