@@ -140,3 +140,31 @@ footer {
         padding-right: .6rem;
     }
 }
+
+/* Floating buttons */
+.floating-buttons {
+    position: fixed;
+    right: 10px;
+    bottom: 40px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .floating-buttons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .floating-buttons img {
+        width: 24px;
+        height: 24px;
+    }
