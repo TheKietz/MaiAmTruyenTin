@@ -13,5 +13,7 @@ namespace MaiAmTruyenTin.ViewModels
         }
         public List<News> RecentNews { get; set; }
         public IEnumerable<NewsCategoryCountVM> NewsCountByCategory { get; set; }
+        public List<News> EventNews { get; set; }
+        
     }
 }

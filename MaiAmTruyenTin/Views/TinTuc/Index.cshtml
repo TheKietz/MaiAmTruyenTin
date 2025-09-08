@@ -17,14 +17,36 @@
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <h2 class="news-title">Tin tức & Hoạt động</h2>
+    <div class="container py-5">        
         <div class="row">
             <!-- Danh sách bài viết -->
             <div class="col-lg-8">
+                <h2 class="news-title">Tin tức sự kiện & Hoạt động</h2>
                 <div class="row">
                     <!-- Bài viết 1 -->
-                    @foreach (var item in Model.AllNewsPaged.Where(n => n.Status == NewsStatus.Approved))
+                    @foreach (var item in Model.EventNews)
+                    {
+                        <div class="col-md-6 col-xl-4">
+                            <div class="news-card" style="height: 320px; display: flex; flex-direction: column;">
+                                <img src="@item.CoverImage" alt="Ảnh bài viết" style="width: 100%; height: 200px; object-fit: cover;">
+                                <div class="news-card-body" style="flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div class="news-card-date" style="font-size: 13px; color: #888; margin-bottom: 8px;">
+                                        @(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "")
+                                        | @item.Category?.Name
+                                    </div>
+                                    <a asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+                                        @item.Title
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>                
+                <h2 class="news-title">Bài viết chia sẻ</h2>
+                <div class="row">
+                    <!-- Bài viết 1 -->
+                    @foreach (var item in Model.AllNewsPaged)
                     {
                         <div class="col-md-6 col-xl-4">
                             <div class="news-card" style="height: 320px; display: flex; flex-direction: column;">

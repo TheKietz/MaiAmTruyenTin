@@ -43,5 +43,9 @@ namespace MaiAmTruyenTin.Enums
         [Display(Name = "Từ chối")]
         Rejected
     }
-
+    public enum BannerPosition
+    {
+        HOMEPAGE_TOP, SIDEBAR, FOOTER
+    }
+   
 }

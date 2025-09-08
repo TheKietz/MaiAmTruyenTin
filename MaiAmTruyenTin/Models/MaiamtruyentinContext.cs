@@ -43,6 +43,7 @@ public partial class MaiamtruyentinContext : DbContext
     public virtual DbSet<Volunteer> Volunteers { get; set; }
     public virtual DbSet<Event> Events { get; set; }
     public virtual DbSet<StaticPage> StaticPages { get; set; }
+    public virtual DbSet<Banner> Banners { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

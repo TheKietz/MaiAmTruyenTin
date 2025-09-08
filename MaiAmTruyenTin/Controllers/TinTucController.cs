@@ -38,6 +38,15 @@ namespace MaiAmTruyenTin.Controllers
 
                         })
                         .ToList();
+            // Lấy tin sự kiện sắp diễn ra
+            var eventCategoryId = db.Categories.FirstOrDefault(c => EF.Functions.Like(c.Name, "%Sự kiện%"))?.CategoryId;
+            var eventNews = db.News
+                .Where(n => n.Status == Enums.NewsStatus.Approved && n.CategoryId == eventCategoryId)
+                .Include(n => n.Category)
+                .OrderByDescending(n => n.CreatedAt)
+                .Take(3)
+                .ToList();
+            
             // Tạo ViewModel
             var vm = new TinTucVM
             {
@@ -47,7 +56,8 @@ namespace MaiAmTruyenTin.Controllers
                        .OrderByDescending(n => n.CreatedAt)
                        .Take(5)
                        .ToList(),
-                NewsCountByCategory = newsCountByCategory
+                NewsCountByCategory = newsCountByCategory,
+                EventNews = eventNews,
             };
 
             return View(vm);
