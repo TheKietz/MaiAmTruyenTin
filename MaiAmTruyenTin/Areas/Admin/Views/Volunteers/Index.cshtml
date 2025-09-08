@@ -114,9 +114,12 @@
                                         @Html.DisplayFor(modelItem => item.DeletedAt)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.VolunteerId">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.VolunteerId">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.VolunteerId">Delete</a>
+                                        <a asp-action="Edit" asp-route-id="@item.VolunteerId" class="btn btn-sm btn-primary">Sửa</a> |
+                                        <a asp-action="Details" asp-route-id="@item.VolunteerId" class="btn btn-sm btn-info">Chi tiết</a>  |
+                                        <form asp-action="Delete" asp-route-id="@item.VolunteerId" method="post" style="display:inline;"
+                                              onsubmit="return confirm('Bạn có chắc muốn xoá TNV: @item.FullName ?');">
+                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                        </form>
                                     </td>
                                 </tr>
                             }

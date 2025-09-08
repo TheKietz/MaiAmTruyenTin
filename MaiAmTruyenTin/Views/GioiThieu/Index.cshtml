@@ -246,9 +246,10 @@
             <section class="w-section w-section--xxl">
                 <div class="row">
                     <div class="col-md-6" style="padding:50px">
-                        <h2 class="hero-title">Về chúng tôi </h2>
+                         <h2 class="hero-title">Về chúng tôi </h2>
                         <div class="vision-underline-about"></div>
-                        <p class="text-body" style="text-align:justify">Mái Ấm Truyền Tin là một trung tâm cộng đồng phi lợi nhuận, được thành lập với sứ mệnh mang lại sự hỗ trợ và phát triển cho những người có hoàn cảnh khó khăn trong xã hội. Chúng tôi tin rằng mỗi người đều xứng đáng có cơ hội để phát triển và sống một cuộc sống đầy đủ, hạnh phúc.</p>
+                        <p class="text-body" style="text-align:justify">@Model.AboutUs</p> 
+                        
                     </div>
                     <div class="col-md-6" style="padding:50px">
                         <img src="~/template/images/about.webp" alt="About Us" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
@@ -272,23 +273,18 @@
             <div class="row align-items-center">
                 <!-- Ảnh bên trái -->
                 <div class="col-lg-6 vision-image mb-3 mb-lg-0">
-                    <img src="~/template/images/founder1.webp" alt="Our Vision Image">
+                    <img src="/uploads/@Model.VisionImage" alt="Our Vision Image">
                 </div>
 
                 <!-- Nội dung bên phải -->
                 <div class="col-lg-6">
                     <div class="vision-item">
-                        <h5>UPWARD – It’s All about Jesus</h5>
-                        <p>We are a community which understands God's redemptive mission to humanity. We are those who believe that worshiping God is the life's mission and part of history. Those who believe in the full sufficiency of Scripture to speak into all walks of life.</p>
-                    </div>
-                    <div class="vision-item">
-                        <h5>INWARD – We Are Family</h5>
-                        <p>We are a responsible community which respects, supports, and forgives each other. Our church is not satisfied with indifferent faith and encourages one another to strive towards God in complete surrender.</p>
-                    </div>
-                    <div class="vision-item">
-                        <h5>OUTWARD – Life on Mission</h5>
-                        <p>We are a community that sees all humanity created in God's image and want to see their worship in spirit and truth. A community that is able to spread the love of God, His mercy, His compassion for the lost and hurt people in Denver and across the world!</p>
-                    </div>
+                        @* <h5>UPWARD – It’s All about Jesus</h5>
+                        <p>We are a community which understands God's redemptive mission to humanity. We are those who believe that worshiping God is the life's mission and part of history. Those who believe in the full sufficiency of Scripture to speak into all walks of life.</p> *@
+                         @* <h5>@Model.VisionTitle</h5> *@
+                        <p>@Model.Vision</p> 
+
+                    </div>                    
                 </div>
             </div>
         </div>

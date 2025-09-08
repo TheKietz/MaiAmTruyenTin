@@ -117,23 +117,23 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
             return View(volunteer);
         }
 
-        // GET: Admin/Volunteers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Admin/Volunteers/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var volunteer = await _context.Volunteers
-                .FirstOrDefaultAsync(m => m.VolunteerId == id);
-            if (volunteer == null)
-            {
-                return NotFound();
-            }
+        //    var volunteer = await _context.Volunteers
+        //        .FirstOrDefaultAsync(m => m.VolunteerId == id);
+        //    if (volunteer == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(volunteer);
-        }
+        //    return View(volunteer);
+        //}
 
         // POST: Admin/Volunteers/Delete/5
         [HttpPost, ActionName("Delete")]

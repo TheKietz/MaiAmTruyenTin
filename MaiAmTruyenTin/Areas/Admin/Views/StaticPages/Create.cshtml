@@ -1,4 +1,4 @@
-﻿@model MaiAmTruyenTin.Models.Volunteer
+﻿@model MaiAmTruyenTin.Models.StaticPage
 
 @{
     ViewData["Title"] = "Create";
@@ -11,39 +11,34 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Thêm TNV</h5>
+                        <h5 class="card-title">Thêm nội dung</h5>
                         <hr>
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="FullName" class="control-label"></label>
-                                <input asp-for="FullName" class="form-control" />
-                                <span asp-validation-for="FullName" class="text-danger"></span>
+                                <label asp-for="Slug" class="control-label"></label>
+                                <input asp-for="Slug" class="form-control" />
+                                <span asp-validation-for="Slug" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Email" class="control-label"></label>
-                                <input asp-for="Email" class="form-control" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Phone" class="control-label"></label>
-                                <input asp-for="Phone" class="form-control" />
-                                <span asp-validation-for="Phone" class="text-danger"></span>
+                                <label asp-for="Content" class="control-label"></label>
+                                <input asp-for="Content" class="form-control" />
+                                <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="JoinDate" class="control-label"></label>
-                                <input asp-for="JoinDate" class="form-control" />
-                                <span asp-validation-for="JoinDate" class="text-danger"></span>
+                                <label asp-for="CoverImage" class="control-label"></label>
+                                <input asp-for="CoverImage" class="form-control" />
+                                <span asp-validation-for="CoverImage" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Skills" class="control-label"></label>
-                                <input asp-for="Skills" class="form-control" />
-                                <span asp-validation-for="Skills" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Notes" class="control-label"></label>
-                                <input asp-for="Notes" class="form-control" />
-                                <span asp-validation-for="Notes" class="text-danger"></span>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="IsVisible" /> @Html.DisplayNameFor(model => model.IsVisible)
+                                </label>
                             </div>
                             <div class="form-group">
                                 <label asp-for="CreatedAt" class="control-label"></label>
@@ -52,8 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="CreatedBy" class="control-label"></label>
-                                <input asp-for="CreatedBy" class="form-control" />
-                                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                                <select asp-for="CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="UpdatedAt" class="control-label"></label>
@@ -62,18 +56,16 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="UpdatedBy" class="control-label"></label>
-                                <input asp-for="UpdatedBy" class="form-control" />
-                                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+                                <select asp-for="UpdatedBy" class="form-control" asp-items="ViewBag.UpdatedBy"></select>
                             </div>
                             <div class="form-group form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                                    <input class="form-check-input" asp-for="isDeleted" /> @Html.DisplayNameFor(model => model.isDeleted)
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DeletedBy" class="control-label"></label>
-                                <input asp-for="DeletedBy" class="form-control" />
-                                <span asp-validation-for="DeletedBy" class="text-danger"></span>
+                                <select asp-for="DeletedBy" class="form-control" asp-items="ViewBag.DeletedBy"></select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DeletedAt" class="control-label"></label>

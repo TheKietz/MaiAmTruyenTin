@@ -1,9 +1,11 @@
-﻿@model IEnumerable<MaiAmTruyenTin.Models.Sponsor>
+﻿@model IEnumerable<MaiAmTruyenTin.Models.StaticPage>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
+<h1>Index</h1>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -22,7 +24,7 @@
                         </form>
                     </div>
                     <div class="col-md-6 text-end">
-                        <a asp-action="Create" class="btn btn-success">Thêm NTT</a>
+                        <a asp-action="Create" class="btn btn-success">Thêm nội dung</a>
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto;">
@@ -30,49 +32,37 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    @Html.DisplayNameFor(model => model.Slug)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Representative)
+                                    @Html.DisplayNameFor(model => model.Title)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Email)
+                                    @Html.DisplayNameFor(model => model.Content)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Phone)
+                                    @Html.DisplayNameFor(model => model.CoverImage)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Address)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.SponsorType)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Logo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Website)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Notes)
+                                    @Html.DisplayNameFor(model => model.IsVisible)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.CreatedAt)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CreatedBy)
+                                    @Html.DisplayNameFor(model => model.CreatedByUser)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.UpdatedAt)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                                    @Html.DisplayNameFor(model => model.UpdatedByUser)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.IsDeleted)
+                                    @Html.DisplayNameFor(model => model.isDeleted)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DeletedBy)
+                                    @Html.DisplayNameFor(model => model.DeletedByUser)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.DeletedAt)
@@ -85,58 +75,46 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
+                                        @Html.DisplayFor(modelItem => item.Slug)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Representative)
+                                        @Html.DisplayFor(modelItem => item.Title)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Email)
+                                        @Html.DisplayFor(modelItem => item.Content)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Phone)
+                                        @Html.DisplayFor(modelItem => item.CoverImage)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Address)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SponsorType)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Logo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Website)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Notes)
+                                        @Html.DisplayFor(modelItem => item.IsVisible)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CreatedAt)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                                        @Html.DisplayFor(modelItem => item.CreatedByUser.Email)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.UpdatedAt)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.UpdatedBy)
+                                        @Html.DisplayFor(modelItem => item.UpdatedByUser.Email)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                                        @Html.DisplayFor(modelItem => item.isDeleted)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DeletedBy)
+                                        @Html.DisplayFor(modelItem => item.DeletedByUser.Email)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DeletedAt)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.SponsorId" class="btn btn-sm btn-primary">Sửa</a> |
-                                        <a asp-action="Details" asp-route-id="@item.SponsorId" class="btn btn-sm btn-info">Chi tiết</a> |
-                                        <form asp-action="Delete" asp-route-id="@item.SponsorId" method="post" style="display:inline;"
-                                              onsubmit="return confirm('Bạn có chắc muốn xoá NTT: @item.Name ?');">
+                                        <a asp-action="Edit" asp-route-id="@item.PageId" class="btn btn-sm btn-primary">Sửa</a> |
+                                        <a asp-action="Details" asp-route-id="@item.PageId" class="btn btn-sm btn-info">Chi tiết</a>
+                                        <form asp-action="Delete" asp-route-id="@item.PageId" method="post" style="display:inline;"
+                                              onsubmit="return confirm('Bạn có chắc muốn xoá ND: @item.Title ?');">
                                             <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
                                         </form>
                                     </td>
