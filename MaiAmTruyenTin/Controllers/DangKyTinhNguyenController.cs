@@ -21,11 +21,13 @@ namespace MaiAmTruyenTin.Controllers
                                 .OrderByDescending(n => n.CreatedAt)
                                 .Take(3)
                                 .ToList();
+            var call = db.StaticPages.FirstOrDefault(p => p.Title == "Kêu gọi tình nguyện viên")?.Content;
             // Tạo ViewModel
             var vm = new ViewModels.DangKyTinhNguyenVM
             {
                 volunteerNews = tinhNguyenNews,
-                NewVolunteer = new Volunteer()
+                NewVolunteer = new Volunteer(),
+                callForVolunteers = call ?? string.Empty
             };
             return View(vm);
         }
