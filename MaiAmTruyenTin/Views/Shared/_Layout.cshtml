@@ -20,27 +20,35 @@
             <div class="container align-items-center">
                 <!-- Logo -->
                 <a class="navbar-brand p-0 d-flex align-items-center" asp-area="" asp-controller="Home"
-                    asp-action="Index">
+                   asp-action="Index">
                     <img src="~/images/mylogo.jpeg" alt="Logo" class="navbar-logo">
                 </a>
 
                 <!-- Toggle -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Menu + Button -->
                 <div class="collapse navbar-collapse w-100" id="mainNavbar">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-5 fw-semibold align-items-center">
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="TinTuc" asp-action="Index">Tin tức</a>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="TinTuc" asp-action="Index">Tin tức</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="GioiThieu" asp-action="Index">Giới
-                                thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="DangKyTinhNguyen"
-                                asp-action="Index">Đăng ký tình nguyện</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="GioiThieu" asp-action="Index">
+                                Giới
+                                thiệu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="DangKyTinhNguyen"
+                               asp-action="Index">Đăng ký tình nguyện</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="NhaTaiTro"
                                asp-action="Index">Nhà tài trợ</a>
@@ -49,8 +57,12 @@
                             <a class="nav-link" asp-controller="LichSuKien"
                                asp-action="Index">Lịch sự kiện</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Donate" asp-action="Index">Quyên
-                                góp</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Donate" asp-action="Index">
+                                Quyên
+                                góp
+                            </a>
+                        </li>
                     </ul>
 
                     <a href="#" class="btn btn-primary btn-sm ms-lg-3">Liên hệ</a>
@@ -64,16 +76,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer mt-5">        
+    <footer class="site-footer mt-5">
         <div class="container py-5">
             <div class="floating-buttons">
                 <a class="social-icon" aria-label="Phone" href="#"><img width="32" height="32" src="~/template/icons/phone.webp" alt="Call" loading="lazy" decoding="async"></a>
-                <a class ="social-icon" aria-label="Messenger" href="#"><img width="32" height="32" src="~/template/icons/messenger.png" alt="Messenger" loading="lazy" decoding="async"></a>
-                <a class="social-icon" aria-label="Facebook"  href="#"><img width="32" height="32" src="~/template/icons/communication.png" alt="Facebook" loading="lazy" decoding="async"></a>
-                <a class="social-icon" aria-label="Zalo"  href="#"><img width="32" height="32" src="~/template/icons/icon-zalo-1.png" alt="Zalo" loading="lazy" decoding="async"></a>
-                <a aria-label="Về đầu trang"  href="javaScript:void();" class="back-to-top" style="display: none;"><i class="fa fa-angle-double-up"></i> </a>
+                <a class="social-icon" aria-label="Messenger" href="#"><img width="32" height="32" src="~/template/icons/messenger.png" alt="Messenger" loading="lazy" decoding="async"></a>
+                <a class="social-icon" aria-label="Facebook" href="#"><img width="32" height="32" src="~/template/icons/communication.png" alt="Facebook" loading="lazy" decoding="async"></a>
+                <a class="social-icon" aria-label="Zalo" href="#"><img width="32" height="32" src="~/template/icons/icon-zalo-1.png" alt="Zalo" loading="lazy" decoding="async"></a>
+                <a aria-label="Về đầu trang" href="javaScript:void();" class="back-to-top" style="display: none;"><i class="fa fa-angle-double-up"></i> </a>
             </div>
-            <div class="row gy-4">                
+            <div class="row gy-4">
                 <!-- About / Logo -->
                 <div class="col-12 col-md-4">
                     <a class="d-flex align-items-center mb-3" href="/" aria-label="Về trang chủ">
@@ -88,7 +100,8 @@
                     <ul class="list-unstyled small mb-0">
                         <li><strong>Địa chỉ:</strong> 123 Đường Yêu Thương, Quận Hạnh Phúc, TP. Hà Nội</li>
                         <li><strong>Hotline:</strong> <a href="tel:+84900123456">+84 900 123 456</a></li>
-                        <li><strong>Email:</strong> <a href="mailto:info@maiamtruyentin.org">info@maiamtruyentin.org</a>
+                        <li>
+                            <strong>Email:</strong> <a href="mailto:info@maiamtruyentin.org">info@maiamtruyentin.org</a>
                         </li>
                     </ul>
                 </div>
@@ -121,7 +134,7 @@
 
                     <form id="footerSubscribeForm" class="d-flex mb-3" onsubmit="return false;">
                         <input id="footerEmail" class="form-control me-2" type="email" placeholder="Nhập email của bạn"
-                            aria-label="Email subscribe" required>
+                               aria-label="Email subscribe" required>
                         <button id="footerSubscribeBtn" class="btn btn-primary">Đăng ký</button>
                     </form>
 
@@ -132,25 +145,22 @@
                         <a class="social-icon" href="#" aria-label="Facebook" title="Facebook">
                             <!-- facebook svg -->
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="#0d6efd"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22 12a10 10 0 10-11.6 9.9v-7H8.9v-3h1.5V9.2c0-1.5.9-2.4 2.3-2.4.7 0 1.4.1 1.9.3v2.1h-1c-.8 0-1 .5-1 1v1.6h1.8l-.3 3h-1.5v7A10 10 0 0022 12z" />
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 12a10 10 0 10-11.6 9.9v-7H8.9v-3h1.5V9.2c0-1.5.9-2.4 2.3-2.4.7 0 1.4.1 1.9.3v2.1h-1c-.8 0-1 .5-1 1v1.6h1.8l-.3 3h-1.5v7A10 10 0 0022 12z" />
                             </svg>
                         </a>
 
                         <a class="social-icon" href="#" aria-label="Instagram" title="Instagram">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="#0d6efd"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6a5 5 0 100 10 5 5 0 000-10zm6.5-3a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z" />
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6a5 5 0 100 10 5 5 0 000-10zm6.5-3a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z" />
                             </svg>
                         </a>
 
                         <a class="social-icon" href="#" aria-label="YouTube" title="YouTube">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="#0d6efd"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M23 7.2a3 3 0 00-2.1-2.1C19.6 4.5 12 4.5 12 4.5s-7.6 0-8.9.6A3 3 0 001 7.2 31 31 0 001 12a31 31 0 00.1 4.8 3 3 0 002.1 2.1c1.3.6 8.9.6 8.9.6s7.6 0 8.9-.6A3 3 0 0023 16.8 31 31 0 0023 12a31 31 0 000-4.8zM9.8 15.6V8.4l6 3.6-6 3.6z" />
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23 7.2a3 3 0 00-2.1-2.1C19.6 4.5 12 4.5 12 4.5s-7.6 0-8.9.6A3 3 0 001 7.2 31 31 0 001 12a31 31 0 00.1 4.8 3 3 0 002.1 2.1c1.3.6 8.9.6 8.9.6s7.6 0 8.9-.6A3 3 0 0023 16.8 31 31 0 0023 12a31 31 0 000-4.8zM9.8 15.6V8.4l6 3.6-6 3.6z" />
                             </svg>
                         </a>
                     </div>
@@ -161,7 +171,7 @@
         <!-- bottom bar -->
         <div class="footer-bottom py-3">
             <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <div class="small text-dark">© 2025 Mái ấm tình thương. All rights reserved.</div>
+                <div class="small text-dark">© <span id="footerYear">2025</span> Mái ấm tình thương. All rights reserved.</div>
                 <div class="small text-dark mt-2 mt-md-0">Thiết kế với ❤️ bằng ASP.NET Core & Bootstrap</div>
             </div>
         </div>
@@ -171,7 +181,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        $(document).ready(function () {
+            $(document).ready(function () {
+            // Nút scroll to top
             $(window).on("scroll", function () {
                 if ($(this).scrollTop() > 300) {
                     $('.back-to-top').fadeIn();
@@ -184,8 +195,19 @@
                 $("html, body").animate({ scrollTop: 0 }, 600);
                 return false;
             });
-        });
 
+            // Lấy năm từ API
+            const footerYear = document.getElementById('footerYear');
+
+            fetch('https://getfullyear.com/api/year')
+                .then(response => response.json())
+                .then(data => {
+                    footerYear.textContent = data.year;
+                })
+                .catch(error => {
+                    footerYear.textContent = new Date().getFullYear(); 
+                });
+        });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
