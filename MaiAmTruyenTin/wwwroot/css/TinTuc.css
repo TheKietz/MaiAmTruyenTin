@@ -1,0 +1,41 @@
+﻿
+.news-section {
+    background: linear-gradient(135deg, #cce7ff, #e6f2ff);
+    padding: 40px 20px;
+}
+
+.news-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 40px 0 20px 0;
+}
+
+.news-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+    .news-card img {
+        height: 150px;
+        object-fit: cover;
+    }
+
+.news-card-body {
+    padding: 8px;
+}
+
+.news-card-date {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.news-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+}
+

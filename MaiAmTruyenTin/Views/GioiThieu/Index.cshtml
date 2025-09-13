@@ -6,219 +6,8 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <environment exclude="Development">
-        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
-    </environment>
-    <style>
-       
-        /* Block wrapper chung */
-        .cover-section {
-            position: relative;
-            background-image: url('/template/images/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #fafafa;
-            padding: 80px 20px;
-            text-align: center;
-            /* color: #222; */
-        }
-
-            .cover-section p{
-                text-align: justify;
-            }
-
-        .vision-underline-about {
-            width: 60px; 
-            height: 4px; 
-            background-color: #0077cc; 
-            margin-top: 8px; 
-            margin-bottom: 24px; 
-        }
-        .cover-section-slogan {
-            position: relative;
-            background-image: url('/template/images/desktop_bg.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: whitesmoke;
-            padding: 80px 20px;
-            text-align: center;
-            color: #222;
-        }
-        /* Text styles */
-        .hero-title {
-            font-size: 35px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .body-text {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        /* Button */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-primary-lg {
-            background-color: #f04d4d;
-            color: #fff;
-        }
-
-            .btn-primary-lg:hover {
-                background-color: #d63c3c;
-            }
-        /*Tầm nhìn*/
-        
-        .vision-section {
-            padding: 60px 0;
-           
-        }
-
-        .vision-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .vision-underline {
-            width: 60px;
-            height: 4px;
-            background-color: #0077cc;
-            margin: 0 auto 40px auto;
-        }
-
-        .vision-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .vision-item {
-            margin-bottom: 30px;
-        }
-
-            .vision-item h5 {
-                font-weight: 600;
-            }
-
-            .vision-item p {
-                text-align: justify;
-            }
-        /* nhà thành lập */
-        .foundation {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .foundation-box {
-            background: whitesmoke;            
-            min-height: 300px; 
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-
-        .bio-container {
-            padding: 20px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-            .bio-container p {
-                line-height: 1.8;
-                margin-bottom: 0;
-            }
-
-        .bio-name {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .bio-title {
-            font-style: italic;
-            margin-bottom: 12px;
-            display: block;
-        }
-        /*sponsor section*/
-        .sponsor-section {
-            background-color: white; 
-            padding: 30px 20px; 
-            text-align: center;
-          
-        }
-        
-        .sponsor-carousel-container {
-            max-width: 1200px;
-            margin: 0 auto; 
-            overflow: hidden;
-        }
-
-        .sponsor-carousel {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .sponsor-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-            .sponsor-track img {
-                width: 90px;
-                height: 70px;
-                margin: 0 10px;
-                object-fit: contain;
-                flex-shrink: 0;
-            }
-
-        /* Carousel nhà tài trợ */
-        .sponsor-carousel-container {
-            background-color: #f9f9f9;
-            padding: 50px 0;
-            overflow: hidden;
-        }
-
-        .sponsor-carousel {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .sponsor-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-            .sponsor-track img {
-                width: 90px;
-                height: 70px;
-                margin: 0 10px;
-                flex-shrink: 0;
-            }
-
-    </style>
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/gioithieu.css" rel="stylesheet" asp-append-version="true" />
 </head>
 <body>
 
@@ -246,10 +35,10 @@
             <section class="w-section w-section--xxl">
                 <div class="row">
                     <div class="col-md-6" style="padding:50px">
-                         <h2 class="hero-title">Về chúng tôi </h2>
+                        <h2 class="hero-title">Về chúng tôi </h2>
                         <div class="vision-underline-about"></div>
-                        <p class="text-body" style="text-align:justify">@Model.AboutUs</p> 
-                        
+                        <p class="text-body" style="text-align:justify">@Model.AboutUs</p>
+
                     </div>
                     <div class="col-md-6" style="padding:50px">
                         <img src="~/template/images/about.webp" alt="About Us" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
@@ -281,19 +70,19 @@
                     <div class="vision-item">
                         @* <h5>UPWARD – It’s All about Jesus</h5>
                         <p>We are a community which understands God's redemptive mission to humanity. We are those who believe that worshiping God is the life's mission and part of history. Those who believe in the full sufficiency of Scripture to speak into all walks of life.</p> *@
-                         @* <h5>@Model.VisionTitle</h5> *@
-                        <p>@Model.Vision</p> 
+                        @* <h5>@Model.VisionTitle</h5> *@
+                        <p>@Model.Vision</p>
 
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
-       
+
         <div id="cover-block" class="block-wrapper" style="background-color:white">
             <h2 class="vision-title">Nhà sáng lập</h2>
             <div class="vision-underline"></div>
             <section class="foundation">
-                @foreach(var item in Model.AllFounder)
+                @foreach (var item in Model.AllFounder)
                 {
                     <div class="foundation-box">
                         <div class="row">
@@ -309,26 +98,26 @@
                             </div>
                         </div>
                     </div>
-                }             
+                }
 
             </section>
         </div>
-        
+
         <section class="sponsor-section">
             <div class="sponsor-carousel-container">
                 <h2 class="hero-title text-center">Các nhà tài trợ</h2>
                 <div class="vision-underline"></div>
                 <div class="sponsor-carousel">
                     <div class="sponsor-track">
-                        @foreach(var item in Model.AllSponsor)
+                        @foreach (var item in Model.AllSponsor)
                         {
                             <img src="~/template/images/sponsor1.png" alt="Sponsor 1" />
-                        }                     
+                        }
                     </div>
                 </div>
             </div>
         </section>
-        
+
     </main>
     <script>
         const track = document.querySelector('.sponsor-track');

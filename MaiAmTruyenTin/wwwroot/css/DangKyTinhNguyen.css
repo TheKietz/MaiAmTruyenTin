@@ -1,0 +1,20 @@
+﻿
+.cover-section {
+    position: relative;
+    background-image: url('/template/images/volunteer.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #fafafa;
+    padding: 30px 20px;
+    text-align: left;
+}
+
+.form-section {
+    background: white;
+    padding: 30px 20px;
+    margin: 15px auto;
+    border-radius: 8px;
+}
+
+
