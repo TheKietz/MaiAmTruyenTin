@@ -1,0 +1,31 @@
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    ViewBag.HideLayout = true;
+}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 col-md-5">
+        <h3 class="text-center mb-4">Login</h3>
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-check">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <p class="text-center mt-3">Don't have an account? <a asp-controller="Account"
+                    asp-action="Register">Register</a></p>
+        </form>
+    </div>
+</div>

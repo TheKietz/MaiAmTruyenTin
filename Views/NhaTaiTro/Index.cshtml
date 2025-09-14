@@ -1,0 +1,111 @@
+﻿@model MaiAmTruyenTin.ViewModels.NhaTaiTroVM
+
+<div class="container mt-4">
+
+    <!-- 🔹 Giới thiệu -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body text-center">
+            <h2 class="fw-bold text-dark mb-3">
+                Nhà Tài Trợ Đồng Hành Cùng Mái Ấm Truyền Tin
+            </h2>
+            <hr style="width:80px; margin:0 auto 20px auto; border:2px solid #007bff;" />
+            <p class="lead text-secondary fst-italic" style="text-align: justify;">
+                Chúng tôi xin gửi lời tri ân sâu sắc đến những nhà tài trợ đã và đang đồng hành cùng
+                <b>Mái Ấm Truyền Tin</b>. Sự ủng hộ quý báu của quý vị không chỉ góp phần mang lại niềm vui,
+                hy vọng và tương lai tươi sáng cho các em nhỏ mồ côi, mà còn là động lực để chúng tôi tiếp tục
+                duy trì và phát triển các hoạt động thiện nguyện.
+                <br /><br />
+                Với mỗi sự đóng góp, dù lớn hay nhỏ, quý vị đã và đang góp phần xây dựng một cộng đồng nhân ái,
+                lan tỏa tinh thần yêu thương và sẻ chia. Chúng tôi luôn trân trọng, ghi nhận và cam kết sử dụng
+                nguồn tài trợ một cách minh bạch, hiệu quả, đúng với mục tiêu mang lại giá trị thiết thực nhất
+                cho các em nhỏ và cộng đồng.
+            </p>
+        </div>
+    </div>
+
+    <!-- 🔹 Logo nhà tài trợ -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="fw-bold text-dark mb-3">Logo Nhà Tài Trợ</h3>
+            <div class="row">
+                @foreach (var sponsor in Model.Sponsors)
+                {
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="border rounded p-3 h-100 shadow-sm bg-white d-flex align-items-center justify-content-center">
+                            <img src="~/images/sponsors/@sponsor.Logo"
+                                 alt="@sponsor.Name"
+                                 class="img-fluid" style="max-height:100px; object-fit:contain;" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 Danh sách donate -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="fw-bold text-dark mb-3 border-bottom pb-2"> Danh sách Donate</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th>Nhà tài trợ</th>
+                            <th>Số tiền</th>
+                            <th>Mục đích</th>
+                            <th>Ghi chú</th>
+                            <th>Ngày ủng hộ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model.Donations)
+                        {
+                            <tr>
+                                <td>@d.SponsorName</td>
+                                <td class="text-success fw-bold">@d.Amount.ToString("N0") ₫</td>
+                                <td>@d.Purpose</td>
+                                <td>@d.Note</td>
+                                <td>@d.DonationDate?.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 Các bài viết liên quan -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="fw-bold text-dark mb-3 border-bottom pb-2"> Các Bài Viết Liên Quan</h3>
+            <div class="row">
+                @foreach (var news in Model.RelatedNews)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100 border-0 bg-light">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <!-- Tiêu đề -->
+                                <h6 class="fw-bold text-primary">@news.Title</h6>
+
+                                <!-- Nếu có mô tả ngắn -->
+                                @if (!string.IsNullOrEmpty(news.Summary))
+                                {
+                                    <p class="text-muted small" style="text-align:justify;">
+                                        @(news.Summary.Length > 100 ? news.Summary.Substring(0, 100) + "..." : news.Summary)
+                                    </p>
+                                }
+
+                                <!-- Nút xem chi tiết -->
+                                <a asp-controller="TinTuc"
+                                   asp-action="Details"
+                                   asp-route-id="@news.NewsId"
+                                   class="btn btn-sm btn-outline-primary mt-2">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>

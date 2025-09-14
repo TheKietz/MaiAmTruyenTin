@@ -1,0 +1,89 @@
+/* slider */
+.carousel-item img {
+    width: 100%;
+    height: 600px;
+    /* chỉnh theo ý */
+    object-fit: cover;
+    /* giữ ảnh không méo */
+}
+
+/* Xóa margin/padding của body quanh slider */
+.carousel {
+    margin: 0;
+    padding: 0;
+}
+
+/* tin tuc */
+.news-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.news-card .image-wrapper {
+    overflow: hidden;
+    border-bottom: 3px solid #0dcaf0;
+}
+
+.news-card img {
+    transition: transform 0.4s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.05);
+}
+
+.news-card .btn {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.news-card .btn:hover {
+    background-color: #0dcaf0;
+    color: white;
+}
+
+/* GENERAL SPACING */
+section {
+    margin-bottom: 4rem;
+}
+
+.partner-logo {
+    max-height: 250px;
+    border-radius: 50%;
+    object-fit: contain;
+    filter: grayscale(40%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.py-6 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+.py-7 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .sponsor-card .sponsor-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .sponsors-section .text-center h2 {
+        font-size: 1.6rem;
+    }
+
+    .sponsors-section .text-center p {
+        font-size: 0.95rem;
+    }
+}
