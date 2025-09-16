@@ -41,7 +41,7 @@
 
                     </div>
                     <div class="col-md-6" style="padding:50px">
-                        <img src="~/template/images/about.webp" alt="About Us" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                        <img src="@Model.Vision." alt="About Us" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
                     </div>
                 </div>
             </section>
@@ -68,9 +68,7 @@
                 <!-- Nội dung bên phải -->
                 <div class="col-lg-6">
                     <div class="vision-item">
-                        @* <h5>UPWARD – It’s All about Jesus</h5>
-                        <p>We are a community which understands God's redemptive mission to humanity. We are those who believe that worshiping God is the life's mission and part of history. Those who believe in the full sufficiency of Scripture to speak into all walks of life.</p> *@
-                        @* <h5>@Model.VisionTitle</h5> *@
+                       
                         <p>@Model.Vision</p>
 
                     </div>
@@ -87,7 +85,14 @@
                     <div class="foundation-box">
                         <div class="row">
                             <div class="col-md-3" style="padding:20px">
-                                <img src="~/template/images/founder1.webp" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                                @if (item.Avarta != null)
+                                {
+                                    <img src="@item.Avarta" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                                }
+                                else
+                                {
+                                    <img src="~/images/default.png" alt="Founder 1" style="width:100px; height:100px; object-fit:cover; border-radius:50px; box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                                }
                             </div>
                             <div class="col-md-9 bio-container">
                                 <p style="text-align:justify">
@@ -111,7 +116,16 @@
                     <div class="sponsor-track">
                         @foreach (var item in Model.AllSponsor)
                         {
-                            <img src="~/template/images/sponsor1.png" alt="Sponsor 1" />
+                            <a href="@item.Website">
+                                @if (item.Logo!=null)
+                                {
+                                    <img src="@item.Logo" alt="Sponsor 1" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/default.png" alt="Sponsor 1" />     
+                                }
+                            </a>
                         }
                     </div>
                 </div>

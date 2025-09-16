@@ -39,5 +39,14 @@ namespace MaiAmTruyenTin.Helpers
             // Trả về đường dẫn relative
             return "/" + folder + "/" + fileName;
         }
+        public string GetFileUrl(string? relativePath)
+        {
+            if (string.IsNullOrEmpty(relativePath))
+            {
+                return "/images/mylogo.jpeg"; 
+            }
+
+            return relativePath.Replace("\\", "/");
+        }
     }
 }

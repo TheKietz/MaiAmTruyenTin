@@ -18,6 +18,14 @@ namespace MaiAmTruyenTin.Controllers
             var tinhNguyenNews = db.News
                                 .Include(n => n.Category)
                                 .Where(n => EF.Functions.Like(n.Category.Name, "%Tình nguyện%"))
+                                .Select(selector: n => new News
+                                {
+                                    NewsId = n.NewsId,
+                                    Title = n.Title,
+                                    CoverImage = n.CoverImage,
+                                    CreatedAt = n.CreatedAt,
+                                    Category = n.Category
+                                })
                                 .OrderByDescending(n => n.CreatedAt)
                                 .Take(3)
                                 .ToList();

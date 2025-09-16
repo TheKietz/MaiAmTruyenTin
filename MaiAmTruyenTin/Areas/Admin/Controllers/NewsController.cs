@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MaiAmTruyenTin.Areas.Admin.ViewModels;
 
 namespace MaiAmTruyenTin.Areas.Admin.Controllers
 {
@@ -26,10 +27,21 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         // GET: Admin/News
         public async Task<IActionResult> Index()
         {
-            var maiamtruyentinContext = _context.News
+            var newsList = await _context.News
                 .Include(n => n.Author)
-                .Include(n => n.Category);
-            return View(await maiamtruyentinContext.ToListAsync());
+                .Include(n => n.Category)
+                .Select(n => new NewsIndexVM
+                {
+                    NewsId = n.NewsId,
+                    Title = n.Title,
+                    CoverImage = n.CoverImage,                   
+                    Status = n.Status,
+                    AuthorName = n.Author.FullName,
+                    CategoryName = n.Category.Name
+                })
+                .ToListAsync();
+
+            return View(newsList);
         }
 
 

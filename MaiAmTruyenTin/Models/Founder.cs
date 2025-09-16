@@ -21,11 +21,14 @@ namespace MaiAmTruyenTin.Models
         public string? Email { get; set; }
 
         [StringLength(20)]
+        [DisplayName("Số điện thoại")]
         public string? Phone { get; set; }
 
         [StringLength(100)]
         [DisplayName("Vai trò")]
         public string? Role { get; set; }
+        [DisplayName("Ảnh đại diện")]
+        public string? Avarta { get; set; }
 
         [StringLength(255)]
         [DisplayName("Đóng góp")]

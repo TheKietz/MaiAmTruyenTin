@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Areas\Admin\Controllers\NewsController.cs~RF1d9bc5.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\template\images\bg.jpg" />
     <None Include="wwwroot\template\images\desktop_bg.png" />
   </ItemGroup>

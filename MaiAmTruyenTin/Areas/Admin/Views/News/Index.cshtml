@@ -1,7 +1,7 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @using MaiAmTruyenTin.Enums
-@model IEnumerable<MaiAmTruyenTin.Models.News>
-@functions{
+@model IEnumerable<MaiAmTruyenTin.Areas.Admin.ViewModels.NewsIndexVM>
+@functions {
     public string GetEnumDisplayName(Enum value)
     {
         var field = value.GetType().GetField(value.ToString());
@@ -51,10 +51,10 @@
                                     @Html.DisplayNameFor(model => model.Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Category.Name)
+                                    @Html.DisplayNameFor(model => model.CategoryName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Author.FullName)
+                                    @Html.DisplayNameFor(model => model.AuthorName)
                                 </th>
 
                                 <th>Chức năng</th>
@@ -71,15 +71,16 @@
                                     <td>
                                         <a href="@item.CoverImage" target="_blank">
                                             <img src="@item.CoverImage" alt="Cover Image" style="max-width: 100px; max-height: 100px;" />
+                                        </a>
                                     </td>
                                     <td>
                                         @GetEnumDisplayName(item.Status)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Category.Name)
+                                        @Html.DisplayFor(modelItem => item.CategoryName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Author.FullName)
+                                        @Html.DisplayFor(modelItem => item.AuthorName)
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-sm btn-primary">Sửa</a> |
