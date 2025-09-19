@@ -4,7 +4,7 @@ namespace MaiAmTruyenTin.ViewModels
 {
     public class NewsDetailVM
     {
-        public News News { get; set; }
-        public List<News> RelatedNews { get; set; }
+        public NewsVM News { get; set; }
+        public List<NewsVM> RelatedNews { get; set; } = new List<NewsVM>();
     }
 }

@@ -11,20 +11,23 @@ namespace MaiAmTruyenTin.Controllers
     {
         private readonly MaiamtruyentinContext db;
         public DangKyTinhNguyenController(MaiamtruyentinContext context) => db = context;
-       
+
         public IActionResult Index()
         {
             // Lấy 3 tin tức mới nhất thuộc chuyên mục "Tình nguyện"
             var tinhNguyenNews = db.News
-                                .Include(n => n.Category)
-                                .Where(n => EF.Functions.Like(n.Category.Name, "%Tình nguyện%"))
-                                .Select(selector: n => new News
+                                .Join(db.Categories,
+                    n => n.CategoryId,
+                    c => c.CategoryId,
+                    (n, c) => new { News = n, CategoryName = c.Name })
+                                .Where(n => EF.Functions.Like(n.CategoryName, "%Tình nguyện%"))
+                                .Select(nc => new NewsVM
                                 {
-                                    NewsId = n.NewsId,
-                                    Title = n.Title,
-                                    CoverImage = n.CoverImage,
-                                    CreatedAt = n.CreatedAt,
-                                    Category = n.Category
+                                    NewsId = nc.News.NewsId,
+                                    Title = nc.News.Title,
+                                    CoverImage = nc.News.CoverImage,
+                                    CreatedAt = nc.News.CreatedAt,
+                                    CategoryName = nc.CategoryName
                                 })
                                 .OrderByDescending(n => n.CreatedAt)
                                 .Take(3)
@@ -72,11 +75,23 @@ namespace MaiAmTruyenTin.Controllers
 
             // Nếu không hợp lệ, phải load lại dữ liệu News để tránh null ở View
             vm.volunteerNews = db.News
-                .Include(n => n.Category)
-                .Where(n => EF.Functions.Like(n.Category.Name, "%Tình nguyện%"))
-                .OrderByDescending(n => n.CreatedAt)
-                .Take(3)
-                .ToList();
+                                .Join(db.Categories,
+                                        n => n.CategoryId,
+                                        c => c.CategoryId,
+                                        (n, c) => new { News = n, CategoryName = c.Name })
+                                .Where(n => EF.Functions.Like(n.CategoryName, "%Tình nguyện%"))
+                                .Select(nc => new NewsVM
+                                {
+                                    NewsId = nc.News.NewsId,
+                                    Title = nc.News.Title,
+                                    CoverImage = nc.News.CoverImage,
+                                    CreatedAt = nc.News.CreatedAt,
+                                    CategoryName = nc.CategoryName
+                                })
+
+                                .OrderByDescending(n => n.CreatedAt)
+                                .Take(3)
+                                .ToList();
 
             return View("Index", vm);
         }

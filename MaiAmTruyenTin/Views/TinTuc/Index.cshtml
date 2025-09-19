@@ -32,7 +32,7 @@
                                 <div class="news-card-body" style="flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                                     <div class="news-card-date" style="font-size: 13px; color: #888; margin-bottom: 8px;">
                                         @(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "")
-                                        | @item.Category?.Name
+                                        | @item.CategoryName
                                     </div>
                                     <a asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                         @item.Title
@@ -54,7 +54,7 @@
                                 <div class="news-card-body" style="flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                                     <div class="news-card-date" style="font-size: 13px; color: #888; margin-bottom: 8px;">
                                         @(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "")
-                                        | @item.Category?.Name
+                                        | @item.CategoryName
                                     </div>
                                     <a asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
                                         @item.Title
@@ -115,7 +115,7 @@
                                 <div style="width: calc(100% - 60px); padding-left: 10px; overflow: hidden;">
                                     <small>
                                         @(item.CreatedAt.HasValue? item.CreatedAt.Value.ToString("dd/MM/yyyy") : "")
-                                        | @item.Category?.Name
+                                        | @item.CategoryName
                                     </small>
                                     <p class="post-title" style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                         <a asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: black; flex-grow: 1;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
