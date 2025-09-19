@@ -17,9 +17,9 @@ namespace MaiAmTruyenTin.Controllers
             // Lấy 3 tin tức mới nhất thuộc chuyên mục "Tình nguyện"
             var tinhNguyenNews = db.News
                                 .Join(db.Categories,
-                    n => n.CategoryId,
-                    c => c.CategoryId,
-                    (n, c) => new { News = n, CategoryName = c.Name })
+                                        n => n.CategoryId,
+                                        c => c.CategoryId,
+                                        (n, c) => new { News = n, CategoryName = c.Name })
                                 .Where(n => EF.Functions.Like(n.CategoryName, "%Tình nguyện%"))
                                 .Select(nc => new NewsVM
                                 {
