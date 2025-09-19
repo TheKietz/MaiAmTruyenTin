@@ -41,8 +41,7 @@ namespace MaiAmTruyenTin.ViewModels
         [DisplayName("Mô tả ngắn")]
         [StringLength(500)]
         public string? Summary { get; set; }
-        public virtual User? Author { get; set; }
-        public virtual Category? Category { get; set; }
-        public virtual ICollection<NewsImage> NewsImages { get; set; } = new List<NewsImage>();
+        public string AuthorName { get; set; } = string.Empty;
+        public List<string> NewsImages { get; set; } = new();
     }
 }
