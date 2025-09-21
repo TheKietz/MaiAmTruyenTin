@@ -35,38 +35,38 @@ namespace MaiAmTruyenTin.Controllers
         }
 
         public IActionResult Index(string? keyword, int? categoryId)
-{
-    var categories = _context.Categories.ToList();
+        {
+            var categories = _context.Categories.ToList();
 
-    // Lấy tất cả sự kiện trước, bao gồm cả Category
-    var events = _context.Events.Include(e => e.Category).ToList();
+            // Lấy tất cả sự kiện trước, bao gồm cả Category
+            var events = _context.Events.Include(e => e.Category).ToList();
 
-    // Tìm kiếm (lọc trên bộ nhớ, không phải SQL)
-    if (!string.IsNullOrEmpty(keyword))
-    {
-        string kw = RemoveDiacritics(keyword).ToLower();
-        events = events.Where(e =>
-            RemoveDiacritics(e.Title).ToLower().Contains(kw) ||
-            (!string.IsNullOrEmpty(e.Description) && RemoveDiacritics(e.Description).ToLower().Contains(kw))
-        ).ToList();
-    }
+            // Tìm kiếm (lọc trên bộ nhớ, không phải SQL)
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                string kw = RemoveDiacritics(keyword).ToLower();
+                events = events.Where(e =>
+                    RemoveDiacritics(e.Title).ToLower().Contains(kw) ||
+                    (!string.IsNullOrEmpty(e.Description) && RemoveDiacritics(e.Description).ToLower().Contains(kw))
+                ).ToList();
+            }
 
-    // Lọc theo danh mục
-    if (categoryId.HasValue && categoryId.Value > 0)
-    {
-        events = events.Where(e => e.CategoryId == categoryId.Value).ToList();
-    }
+            // Lọc theo danh mục
+            if (categoryId.HasValue && categoryId.Value > 0)
+            {
+                events = events.Where(e => e.CategoryId == categoryId.Value).ToList();
+            }
 
-    var vm = new LichSuKienVM
-    {
-        Events = events.OrderBy(e => e.StartDate).ToList(),
-        Keyword = keyword,
-        SelectedCategory = categoryId?.ToString(),
-        Categories = categories.ToDictionary(c => c.CategoryId, c => c.Name)
-    };
+            var vm = new LichSuKienVM
+            {
+                Events = events.OrderBy(e => e.StartDate).ToList(),
+                Keyword = keyword,
+                SelectedCategory = categoryId?.ToString(),
+                Categories = categories.ToDictionary(c => c.CategoryId, c => c.Name)
+            };
 
-    return View(vm);
-}
+            return View(vm);
+        }
 
 
         // Trả dữ liệu JSON cho FullCalendar

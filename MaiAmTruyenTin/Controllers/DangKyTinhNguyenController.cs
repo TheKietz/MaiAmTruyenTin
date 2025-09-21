@@ -12,27 +12,32 @@ namespace MaiAmTruyenTin.Controllers
         private readonly MaiamtruyentinContext db;
         public DangKyTinhNguyenController(MaiamtruyentinContext context) => db = context;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // Lấy 3 tin tức mới nhất thuộc chuyên mục "Tình nguyện"
-            var tinhNguyenNews = db.News
-                                .Join(db.Categories,
-                                        n => n.CategoryId,
-                                        c => c.CategoryId,
-                                        (n, c) => new { News = n, CategoryName = c.Name })
-                                .Where(n => EF.Functions.Like(n.CategoryName, "%Tình nguyện%"))
-                                .Select(nc => new NewsVM
-                                {
-                                    NewsId = nc.News.NewsId,
-                                    Title = nc.News.Title,
-                                    CoverImage = nc.News.CoverImage,
-                                    CreatedAt = nc.News.CreatedAt,
-                                    CategoryName = nc.CategoryName
-                                })
-                                .OrderByDescending(n => n.CreatedAt)
-                                .Take(3)
-                                .ToList();
-            var call = db.StaticPages.FirstOrDefault(p => p.Title == "Kêu gọi tình nguyện viên")?.Content;
+            var tinhNguyenNews = await db.News
+                .Join(db.Categories,
+                      n => n.CategoryId,
+                      c => c.CategoryId,
+                      (n, c) => new { News = n, CategoryName = c.Name })
+                .Where(n => EF.Functions.Like(n.CategoryName, "%Tình nguyện%"))
+                .Select(nc => new NewsVM
+                {
+                    NewsId = nc.News.NewsId,
+                    Title = nc.News.Title,
+                    CoverImage = nc.News.CoverImage,
+                    CreatedAt = nc.News.CreatedAt,
+                    CategoryName = nc.CategoryName
+                })
+                .OrderByDescending(n => n.CreatedAt)
+                .Take(3)
+                .ToListAsync();  // async version
+
+            var call = await db.StaticPages
+                .Where(p => p.Title == "Kêu gọi tình nguyện viên")
+                .Select(p => p.Content)
+                .FirstOrDefaultAsync();  // async version
+
             // Tạo ViewModel
             var vm = new ViewModels.DangKyTinhNguyenVM
             {
@@ -40,6 +45,7 @@ namespace MaiAmTruyenTin.Controllers
                 NewVolunteer = new Volunteer(),
                 callForVolunteers = call ?? string.Empty
             };
+
             return View(vm);
         }
 

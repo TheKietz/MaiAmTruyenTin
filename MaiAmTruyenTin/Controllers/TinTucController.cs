@@ -1,11 +1,10 @@
 ﻿using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Enums;
 using MaiAmTruyenTin.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 using X.PagedList.Extensions;
-using MaiAmTruyenTin.Enums;
 using static MaiAmTruyenTin.ViewModels.TinTucVM;
 
 namespace MaiAmTruyenTin.Controllers
@@ -14,18 +13,20 @@ namespace MaiAmTruyenTin.Controllers
     {
         private readonly MaiamtruyentinContext db;
         public TinTucController(MaiamtruyentinContext context) => db = context;
+
         // GET: NewsController
-        public IActionResult Index(int? page)
+        public async Task<IActionResult> Index(int? page)
         {
-            // Phân trang
             int pageSize = 6;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
+
             // Lấy dữ liệu phân trang cho tin tức đã phê duyệt
             var newsDataQuery = db.News
                 .Where(n => n.Status == Enums.NewsStatus.Approved)
                 .Include(n => n.Category);
-            // Lấy dữ liệu đã phân trang
-            var data = newsDataQuery
+
+            // EF Core không hỗ trợ trực tiếp ToPagedListAsync => cần lấy list trước rồi paged
+            var allNews = await newsDataQuery
                 .Select(n => new NewsVM
                 {
                     NewsId = n.NewsId,
@@ -39,10 +40,12 @@ namespace MaiAmTruyenTin.Controllers
                     Summary = n.Summary
                 })
                 .OrderByDescending(n => n.CreatedAt)
-                .ToPagedList(pageNumber, pageSize);
+                .ToListAsync();
+
+            var data = allNews.ToPagedList(pageNumber, pageSize);
 
             // Đếm số lượng tin approved theo từng chuyên mục
-            var newsCountByCategory = db.News
+            var newsCountByCategory = await db.News
                 .Where(n => n.Status == Enums.NewsStatus.Approved)
                 .GroupBy(n => n.Category.Name)
                 .Select(g => new NewsCategoryCountVM
@@ -50,14 +53,15 @@ namespace MaiAmTruyenTin.Controllers
                     CategoryName = g.Key,
                     NewsCount = g.Count(),
                 })
-                .ToList();
+                .ToListAsync();
+
             // Lấy tin sự kiện sắp diễn ra
-            var eventCategoryId = db.Categories
+            var eventCategoryId = await db.Categories
                 .Where(c => EF.Functions.Like(c.Name, "%Sự kiện%"))
                 .Select(c => c.CategoryId)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
-            var eventNews = db.News
+            var eventNews = await db.News
                 .Where(n => n.Status == Enums.NewsStatus.Approved && n.CategoryId == eventCategoryId)
                 .OrderByDescending(n => n.CreatedAt)
                 .Join(db.Categories,
@@ -76,11 +80,12 @@ namespace MaiAmTruyenTin.Controllers
                     ViewCount = nc.News.ViewCount,
                     CreatedAt = nc.News.CreatedAt,
                     Summary = nc.News.Summary,
-                    CategoryName = nc.CategoryName 
+                    CategoryName = nc.CategoryName
                 })
-                .ToList();
+                .ToListAsync();
+
             // Lấy tin mới nhất
-            var recentNews = db.News
+            var recentNews = await db.News
                 .Where(n => n.Status == Enums.NewsStatus.Approved)
                 .Include(n => n.Category)
                 .Select(n => new NewsVM
@@ -93,8 +98,8 @@ namespace MaiAmTruyenTin.Controllers
                 })
                 .OrderByDescending(n => n.CreatedAt)
                 .Take(5)
-                .ToList();
-            // Tạo ViewModel
+                .ToListAsync();
+
             var vm = new TinTucVM
             {
                 AllNewsPaged = data,
@@ -106,10 +111,9 @@ namespace MaiAmTruyenTin.Controllers
             return View(vm);
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            // Lấy chi tiết tin tức
-            var news = db.News
+            var news = await db.News
                 .Include(n => n.Category)
                 .Select(n => new NewsVM
                 {
@@ -124,25 +128,26 @@ namespace MaiAmTruyenTin.Controllers
                     CreatedAt = n.CreatedAt,
                     Summary = n.Summary
                 })
-                .FirstOrDefault(n => n.NewsId == id);
+                .FirstOrDefaultAsync(n => n.NewsId == id);
 
             if (news == null)
                 return NotFound();
 
-            // lấy thêm tin liên quan
-            var relatedNews = db.News
+            var relatedNews = await db.News
                 .Where(n => n.CategoryId == news.CategoryId && n.NewsId != news.NewsId)
                 .Select(n => new NewsVM
                 {
                     NewsId = n.NewsId,
                     Title = n.Title,
+                    AuthorName = n.Author != null ? n.Author.FullName : "Không rõ",
+                    CategoryName = n.Category != null ? n.Category.Name : "Chưa phân loại",
                     CoverImage = n.CoverImage,
                     CreatedAt = n.CreatedAt
                 })
                 .OrderByDescending(n => n.CreatedAt)
                 .Take(5)
-                .ToList();
-            // Tạo ViewModel
+                .ToListAsync();
+
             var vm = new NewsDetailVM
             {
                 News = news,
@@ -151,6 +156,5 @@ namespace MaiAmTruyenTin.Controllers
 
             return View(vm);
         }
-
     }
 }
