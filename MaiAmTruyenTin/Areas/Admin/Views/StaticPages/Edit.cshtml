@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Content" class="control-label"></label>
-                                <input asp-for="Content" class="form-control" />
+                                <textarea asp-for="Content" id="Content" name="Content" class="form-control"></textarea> 
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -90,6 +90,28 @@
 </div>
 
 @section Scripts {
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/config.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('Content', {
+                height:300,
+                width:'100%',
+                filebrowserBrowseUrl: '/Admin/CkEditor/UploadExplorer',
+                filebrowserUploadUrl: '/Admin/CkEditor/UploadImage',
+                extraAllowedContent: 'span'
+            });
+        });
+
+        // Cập nhật nội dung từ CKEditor vào textarea trước khi submit form
+        $('form').on('submit', function () {
+            for (var instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+        });
+
+    </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Sửa thông tin NTT</h5>
+                        <h5 class="card-title">Thay đổi thông tin</h5>
                         <hr>
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Logo" class="control-label"></label>
-                                <input asp-for="Logo" class="form-control" />
+                                <input type="file" name="Logo" class="form-control" />
                                 <span asp-validation-for="Logo" class="text-danger"></span>
                             </div>
                             <div class="form-group">

@@ -84,7 +84,7 @@
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-sm btn-primary">Sửa</a> |
-                                        <a href="/tintuc/details/@item.NewsId" class="btn btn-sm btn-info"
+                                        <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-sm btn-info"
                                            target="_blank">Xem</a> |
                                         <form asp-action="Delete" asp-route-id="@item.NewsId" method="post" style="display:inline;"
                                               onsubmit="return confirm('Bạn có chắc muốn xoá tin: @item.Title ?');">

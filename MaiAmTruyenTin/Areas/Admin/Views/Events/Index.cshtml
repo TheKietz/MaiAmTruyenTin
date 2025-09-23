@@ -21,7 +21,7 @@
                         </form>
                     </div>
                     <div class="col-md-6 text-end">
-                        <a asp-action="Create" class="btn btn-success">Thêm tin</a>
+                        <a asp-action="Create" class="btn btn-success">Thêm sự kiện</a>
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto;">
@@ -66,9 +66,12 @@
                                         @Html.DisplayFor(modelItem => item.Category.Name)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                                        <a asp-action="Edit" asp-route-id="@item.EventId">Sửa</a> |
+                                        <a asp-action="Details" asp-route-id="@item.EventId">Chi tiết</a> |
+                                        <form asp-action="Delete" asp-route-id="@item.EventId" method="post" style="display:inline;"
+                                              onsubmit="return confirm('Bạn có chắc muốn xoá sự kiện: @item.Title ?');">
+                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                        </form>
                                     </td>
                                 </tr>
                             }

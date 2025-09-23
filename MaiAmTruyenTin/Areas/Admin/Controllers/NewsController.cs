@@ -138,9 +138,6 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
             return View(news);
         }
 
-
-
-
         // POST: Admin/News/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

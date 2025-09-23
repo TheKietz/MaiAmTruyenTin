@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Thêm TNV</h5>
+                        <h5 class="card-title">Thêm mới</h5>
                         <hr>
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Notes" class="control-label"></label>
-                                <input asp-for="Notes" class="form-control" />
+                                <textarea asp-for="Notes" class="form-control" />
                                 <span asp-validation-for="Notes" class="text-danger"></span>
                             </div>
                             <div class="form-group">

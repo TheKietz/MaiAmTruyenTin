@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MaiAmTruyenTin.Data;
+using MaiAmTruyenTin.Helpers;
+using MaiAmTruyenTin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MaiAmTruyenTin.Data;
-using MaiAmTruyenTin.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MaiAmTruyenTin.Areas.Admin.Controllers
 {
@@ -14,6 +15,7 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
     public class SponsorsController : Controller
     {
         private readonly MaiamtruyentinContext _context;
+        private readonly FileUploadHelper _fileHelper;
 
         public SponsorsController(MaiamtruyentinContext context)
         {
@@ -55,10 +57,11 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SponsorId,Name,Representative,Email,Phone,Address,SponsorType,Logo,Website,Notes,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt")] Sponsor sponsor)
+        public async Task<IActionResult> Create([Bind("SponsorId,Name,Representative,Email,Phone,Address,SponsorType,Logo,Website,Notes,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt")] Sponsor sponsor, IFormFile? Logo)
         {
             if (ModelState.IsValid)
             {
+                sponsor.Logo = await _fileHelper.UploadFile(Logo);
                 _context.Add(sponsor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,13 +90,27 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SponsorId,Name,Representative,Email,Phone,Address,SponsorType,Logo,Website,Notes,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt")] Sponsor sponsor)
+        public async Task<IActionResult> Edit(int id, [Bind("SponsorId,Name,Representative,Email,Phone,Address,SponsorType,Logo,Website,Notes,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,IsDeleted,DeletedBy,DeletedAt")] Sponsor sponsor, IFormFile? Logo)
         {
             if (id != sponsor.SponsorId)
             {
                 return NotFound();
             }
+            // Lấy dữ liệu cũ từ DB
+            var existingNews = await _context.Sponsors.AsNoTracking()
+                                    .FirstOrDefaultAsync(n => n.SponsorId == id);
+            if (existingNews == null) return NotFound();
 
+            if (Logo != null)
+            {
+                // Upload ảnh mới nếu có file
+                sponsor.Logo = await _fileHelper.UploadFile(Logo);
+            }
+            else
+            {
+                // Giữ nguyên ảnh cũ
+                sponsor.Logo = existingNews.Logo;
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -114,24 +131,6 @@ namespace MaiAmTruyenTin.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sponsor);
-        }
-
-        // GET: Admin/Sponsors/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var sponsor = await _context.Sponsors
-                .FirstOrDefaultAsync(m => m.SponsorId == id);
-            if (sponsor == null)
-            {
-                return NotFound();
-            }
-
             return View(sponsor);
         }
 

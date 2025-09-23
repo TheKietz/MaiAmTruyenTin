@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Thông tin NTT</h5>
+                        <h5 class="card-title">Thông tin chi tiết</h5>
                         <hr>
                         <dl class="row">
                             <dt class="col-sm-2">
@@ -113,8 +113,8 @@
                         </dl>
 
                         <div>
-                            <a asp-action="Edit" asp-route-id="@Model?.SponsorId">Edit</a> |
-                            <a asp-action="Index">Back to List</a>
+                            <a asp-action="Edit" asp-route-id="@Model?.SponsorId" class="btn btn-sm btn-primary">Sửa</a> |
+                            <a asp-action="Index" class="btn btn-sm btn-info">Quay lại</a>                          
                         </div>
                     </div>
                 </div>
